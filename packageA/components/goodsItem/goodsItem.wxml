@@ -1,0 +1,20 @@
+<view class="goods-box">
+  <view wx:for="{{list}}" wx:key="index">
+    <van-card
+      num="{{showNum?'2':none}}"
+      tag="{{item.discount?'折扣':''}}"
+      price="{{item.discount}}"
+      desc="{{item.description}}"
+      title="{{item.title}}"
+      thumb="{{item.src}}"
+    >
+      <view slot="tags" class="tags">
+        <text size="mini">{{stateText}}</text>
+      </view>
+      <!-- <view slot="footer" class="btn-box">
+        <van-button round class="btn" size="mini">{{btnText1?btnText1:'查看物流'}}</van-button>
+        <van-button round size="mini">{{btnText2?btnText2:'退货'}}</van-button>
+      </view> -->
+    </van-card>
+  </view>
+</view>

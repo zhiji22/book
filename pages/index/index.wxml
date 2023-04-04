@@ -1,0 +1,11 @@
+<view class="app-index">
+  <view class="fixed-search">
+    <search bindtap="goToSearch" />
+  </view>
+  <!-- 轮播图 -->
+  <swiper swiperHeight="270" />
+  <!-- 根据标签选择商品 -->
+  <label />
+  <!-- 商品展示列表 -->
+  <floor />
+</view>

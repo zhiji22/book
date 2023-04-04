@@ -1,0 +1,9 @@
+{
+  "onReachBottomDistance": 150,
+  "enablePullDownRefresh": true,
+  "backgroundColor": "#8639FF",
+  "backgroundTextStyle": "dark",
+  "usingComponents": {
+    "van-card": "@vant/weapp/card/index"
+  }
+}

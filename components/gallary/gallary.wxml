@@ -1,0 +1,10 @@
+<view class="gallary-box" bind:tap="handleCloseGallary">
+  <view>
+    <swiper
+      swiperList="{{swiperList}}"
+      swiperHeight="{{550}}"
+      showDots="{{false}}"
+      currentIndex="{{currentIndex}}"
+      />
+  </view>
+</view>

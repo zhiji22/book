@@ -1,0 +1,21 @@
+<!--components/index/label/label.wxml-->
+<view class="label">
+  <view class="label-txt">分类</view>
+  <block
+    wx:for="{{lableList}}"
+    wx:key="*this"
+    wx:for-item="fItem"
+    >
+    <view
+      class="item"
+      wx:for="{{fItem}}"
+      wx:for-item="cItem"
+      wx:key="index"
+      bind:tap="goToGoodsList"
+      data-type="{{cItem.type}}"
+      >
+      <image class="img" src="{{cItem.src}}" />
+      <text class="txt">{{cItem.text}}</text>
+    </view>
+  </block>
+</view>

@@ -1,0 +1,9 @@
+<view>
+  <van-search
+    value="{{ value }}"
+    shape="round"
+    background="#8639FF"
+    placeholder="搜索"
+    class="van-search"
+  />
+</view>

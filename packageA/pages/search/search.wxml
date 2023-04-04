@@ -1,0 +1,42 @@
+<view class=".search">
+  <view class="sticky-search">
+    <van-search
+      value="{{ value }}"
+      focus="{{isFocus}}"
+      shape="round"
+      background="#8639FF"
+      placeholder="搜索"
+      class="van-search"
+      bind:change="onChange"
+    />
+  </view>
+  <!-- 搜索匹配的内容 -->
+  <view class="search-list" wx:if="{{ value }}">
+    <van-index-bar index-list="{{indexList}}">
+      <view>
+        <van-index-anchor index="IT" />
+        <van-cell title="文本"/>
+      </view>
+      <!-- <view>
+        <van-index-anchor index="心理学" />
+        <van-cell title="文本" />
+      </view> -->
+    </van-index-bar>
+  </view>
+  <!-- 搜索历史 -->
+  <view class="history" wx:else>
+    <view class="history-title">
+      <text>搜索历史</text>
+      <van-icon name="delete" size="16" bind:tap="removeHistory" />
+    </view>
+    <view class="history-list">
+      <text
+        class="txt"
+        wx:for="{{ historyList }}"
+        wx:key="*this"
+        >{{item}}
+      </text>
+    </view>
+  </view>
+</view> 
+

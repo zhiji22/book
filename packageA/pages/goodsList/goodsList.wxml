@@ -1,0 +1,27 @@
+<view class="title-box">
+  <text class="txt">{{requestType}}</text>
+</view>
+<view>
+  <view
+    wx:for="{{goodsList}}"
+    wx:key="id"
+    bind:tap="goToDetail"
+    data-goodsId="{{item.id}}"
+    >
+      <van-card
+      tag="{{item.discount?'折扣':''}}"
+      price="{{item.discount?item.discount:item.price}}"
+      desc="{{item.description}}"
+      origin-price="{{item.discount?item.price:''}}"
+      title="{{item.title}}"
+      thumb="{{item.src}}"
+      lazy-load="true"
+      tags="{{['标签', '标签']}}"
+    >
+      <view slot="footer" class="detail-txt">
+        <text>进入详情></text>
+      </view>
+    </van-card>
+  </view>
+</view>
+

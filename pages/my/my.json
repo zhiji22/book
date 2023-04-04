@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "login-after": "/components/loginAfter/index",
+    "van-image": "@vant/weapp/image/index",
+    "van-button": "@vant/weapp/button/index",
+    "van-area": "@vant/weapp/area/index",
+    "van-popup": "@vant/weapp/popup/index"
+  }
+}

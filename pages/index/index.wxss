@@ -1,0 +1,8 @@
+.app-index {
+  padding-bottom: 119rpx;
+}
+.fixed-search {
+  position: sticky;
+  top: 90;
+  z-index: 999;
+}

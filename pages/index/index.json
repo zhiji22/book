@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "search": "/components/search/cSearch",
+    "swiper": "/components/swiper/swiper",
+    "label": "/components/label/label",
+    "floor": "/components/floor/floor"
+  }
+}

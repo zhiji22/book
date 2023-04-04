@@ -1,0 +1,58 @@
+<view class="login-after">
+  <view class="head-picture">
+    <view class="img-box">
+      <van-image
+        round
+        width="4.5rem"
+        height="4.5rem"
+        fit="cover"
+        lazy-load
+        src="{{userInfo.avatarUrl?userInfo.avatarUrl:''}}"
+      />
+      <text class="txt">{{userInfo.nickName}}</text>
+    </view>
+  </view>
+  <!-- 内容部分 -->
+  <view class="content">
+    <view class="number-box">
+    <!-- direction="horizontal" 内容横排 -->
+      <van-grid column-num="3" direction="horizontal" bind:tap="goToCollect">
+        <view class="number-item" >
+          <van-grid-item use-slot data-name="collect">收藏 {{collectList.length}}</van-grid-item>
+        </view>
+        <view class="number-item">
+          <van-grid-item use-slot data-name="cart">购物车 {{goodsCardId.length}}</van-grid-item>
+        </view>
+        <view class="number-item">
+          <van-grid-item use-slot data-name="trace">足迹 33</van-grid-item>
+        </view>
+      </van-grid>
+    </view>
+    <!-- 我的订单 -->
+    <view class="my-order">
+      <view class="txt-box" bind:tap="goToOrder">
+        <text class="txt">我的订单</text>
+        <van-icon name="arrow" size="13" />
+      </view>
+      <view>
+        <van-grid column-num="3" bind:tap="goToMyOrderPage">
+          <van-grid-item
+            wx:for="{{iconList}}"
+            wx:key="index"
+            icon="{{item.icon}}"
+            text="{{item.text}}"
+            data-index="{{index}}"
+            />
+        </van-grid>
+      </view>
+    </view>
+    <!-- 用户地址等信息 -->
+    <view class="info">
+      <view class="info-item" wx:for="{{['收货地址', '关于作者', '退出登录']}}" wx:key="*this" bindtap="handleTapInfo" data-index="{{index}}">
+        <text>{{item}}</text>
+        <van-icon name="arrow" size="13" />
+      </view>
+      <van-dialog id="van-dialog"  />
+    </view>
+  </view>
+</view>

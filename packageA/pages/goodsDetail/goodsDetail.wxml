@@ -1,0 +1,77 @@
+<view>
+  <view class="banner">
+    <swiper
+      swiperList="{{swiperList}}"
+      swiperHeight="700"
+      bind:tap="handleShowGallary"
+      bind:handleCurrent="handleCurrent"
+      />
+      <!-- 图片数量 -->
+    <view class="text-box">
+      <text class="txt">{{currentIndex+1}} / {{swiperList.length}}</text>
+    </view>
+  </view>
+  <!-- 商品详情 -->
+  <view class="goods-info">
+    <view class="price-box">
+      <text class="symbol">￥</text>
+      <text>{{swiperList[0].discount}}</text>
+      <text class="origin-price">￥{{swiperList[0].price}}</text>
+      <image src="/static/postage.png"  class="icon"/>
+    </view>
+    <view class="desc-box">
+      <text class="description">{{swiperList[0].description}}</text>
+      <view class="author-box">
+        <text class="author">{{swiperList[0].author}}</text> 著
+        <text class="author">未知</text> 出版社
+      </view>
+    </view>
+    <view class="detail-serve">
+      <view class="detail-serve-box">
+        <image src="/static/right_icon.png" class="right-icon" />
+        <text class="txt">七天免运费</text>
+      </view>
+      <view class="detail-serve-box">
+        <image src="/static/right_icon.png" class="right-icon" />
+        <text class="txt">可配送港澳台及海外</text>
+      </view>
+    </view>
+    <!-- 图片 -->
+    <view class="img-box">
+      <view class="text-box">
+        <text class="txt" >商品图片</text>
+      </view>
+      <view
+        wx:for="{{swiperList}}"
+        wx:key="index"
+        style="margin-bottom: 10rpx;"
+      >
+        <image src="{{item.book_src}}" />
+      </view>
+    </view>
+    <!-- 最底下信息 -->
+    <view class="more-info">
+      <text class="text">更多信息请联系作者更新...</text>
+    </view>
+  </view>
+  <!-- 下面购物车 -->
+  <view>
+    <van-goods-action>
+      <van-goods-action-icon icon="{{icon}}" text="收藏" bindtap="handleCollect" />
+      <van-goods-action-icon icon="cart-o" text="购物车" info="{{goodsCardId.length}}" bind:tap="goToCart" />
+      <van-goods-action-button color="#be99ff" text="加入购物车" type="warning" bind:tap="handleAddCart" />
+      <van-goods-action-button color="#7232dd" text="立即购买" />
+    </van-goods-action>
+  </view>
+  <!-- 放大图片 -->
+  <view
+    class="gallary"
+    wx:if="{{showGallary}}"
+    >
+    <gallary
+      swiperList="{{swiperList}}"
+      bind:changeGallary="changeGallary"
+      currentIndex="{{currentIndex}}"
+      />
+  </view>
+</view>

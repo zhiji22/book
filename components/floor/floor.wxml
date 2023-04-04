@@ -1,0 +1,29 @@
+<view>
+  <view
+    class="floor"
+    wx:for="{{floorList}}"
+    wx:key="index"
+    bindtap="goToGoodsList"
+    data-type="{{item.type}}"
+    >
+    <view class="floor-text">
+      <text class="txt1">{{item.type}}</text>
+    </view>
+    <!-- 商品 -->
+    <view class="floor-goods">
+      <view class="floor-item">
+        <image src="{{item.src}}" class="img" />
+      </view>
+      <view class="floor-item">
+        <view
+          wx:for="{{item.subSwiperList}}"
+          wx:key="*this"
+          wx:for-item="cItem"
+          class="img-box"
+          >
+            <image src="{{cItem}}" class="img" />
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,166 @@
+.van-submit-bar {
+  width: 100%;
+  height: 120rpx;
+  bottom: 118rpx !important;
+}
+/* 收货地址 */
+.address-box {
+  /* height: 300rpx; */
+  padding: 35rpx 25rpx 0;
+  font-size: 30rpx;
+  position: relative;
+}
+.address-box image {
+  width: 37rpx;
+  height: 37rpx;
+  margin-right: 12rpx;
+}
+.address-box .icon {
+  font-size: 35rpx;
+  position: absolute;
+  top: 42rpx;
+  right: 26rpx;
+}
+
+.address-box .item {
+  display: flex;
+  justify-content: space-between;
+}
+.address-box .item .phone {
+  position: relative;
+  top: -8rpx;
+  margin-right: 70rpx;
+}
+.address-box .item:last-of-type {
+  padding: 30rpx 0;
+}
+
+/* 全选按钮 */
+.van-radio {
+  margin-left: -10rpx;
+  margin-top: 10rpx;
+}
+.van-radio__label {
+  padding-left: 15rpx !important;
+}
+/* 收货地址下划线 */
+.address-box::after {
+  display: block;
+  content: "";
+  height: 5rpx;
+  margin:  0 0 20rpx -25rpx;
+  background: repeating-linear-gradient(-45deg, #ff6c6c , #ff6c6c 20%, transparent 0, transparent 25%, #1989fa 0, #1989fa 45%, transparent 0, transparent 50%);
+}
+
+/* 购物车 - 图标 */
+.goods-box {
+  width: 100.8%;
+  height: 500rpx;
+}
+.goods-box .cart-icon  {
+  display: flex;
+  align-items: center;
+  padding: 15rpx 20rpx;
+  border-bottom: 1px solid #F7F7F7;
+}
+.goods-box .cart-icon .img  {
+  width: 60rpx;
+  height: 60rpx;
+  margin-right: 15rpx;
+}
+.goods-box .cart-icon .txt {
+  font-size: 37rpx;
+  font-weight: 700;
+}
+/* 商品 */
+.goods {
+  padding: 18rpx 0 236rpx 0;
+  background-color: #fafafa;
+}
+.goods .goods-item {
+  padding: 0 20rpx;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+.goods .goods-item .van-card {
+  width: 80%;
+  height: 260rpx;
+  background-color: #fff;
+  margin-left: -10rpx;
+  border-radius: 40rpx;
+  position: relative;
+}
+/* == card宽度 ==  */
+.van-card__content{
+  width: 540rpx;
+  overflow: hidden;
+}
+.van-card__desc {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+/* == card宽度 ==  */
+
+.goods .goods-item .van-card__num {
+  margin-top: -70rpx;
+}
+/* 按钮 */
+.goods .goods-item .btn-box {
+  width: 50rpx;
+  display: flex;
+  position: absolute;
+  top: 178rpx;
+  right: 90rpx;
+}
+.goods .goods-item .btn-box .van-button--mini {
+  min-width: 55rpx !important;
+  height: 50rpx;
+  margin-right: 10rpx;
+  background-color: #fff;
+  border-radius: 20rpx;
+}
+.goods .goods-item .btn-box .van-button--mini:first-child {
+  background-color: #1989fa;
+}
+.goods .goods-item .btn-box .van-button--mini .van-button__text {
+  font-size: 37rpx;
+  color: #fff;
+  line-height: 46rpx;
+}
+/* 标签 */
+.goods .goods-item .tags .van-button--mini {
+  min-width: 60rpx;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  height: 40rpx;
+  border: 1px solid #ffbac2;
+  color: #e0021c;
+}
+.goods .no-more {
+  width: 100%;
+  text-align: center;
+  line-height: 100rpx;
+  font-size: 30rpx;
+  color: #9e9e9e;
+}
+
+/* radio */
+.radio-box {
+  position: absolute;
+  top: 50%;
+  margin-top: -30rpx;
+  right: -78rpx;
+}
+.radio-bottom {
+  margin: 8rpx 0 0 -18rpx;
+}
+
+/* 点击选择收货地址 */
+.select-addr {
+  height: 130rpx;
+  text-align: center;
+  box-sizing: border-box;
+  padding-top: 20rpx;
+}

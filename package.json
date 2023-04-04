@@ -1,0 +1,27 @@
+{
+  "name": "mini-books",
+  "version": "1.0.0",
+  "description": "",
+  "main": ".eslintrc.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@vant/area-data": "^1.4.1",
+    "@vant/weapp": "^1.10.13",
+    "koa": "^2.14.1",
+    "koa-bodyparser": "^4.4.0",
+    "koa-json": "^2.0.2",
+    "koa-router": "^12.0.0",
+    "koa2-cors": "^2.0.6",
+    "mobx-miniprogram": "^4.13.2",
+    "mobx-miniprogram-bindings": "^2.1.5",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}

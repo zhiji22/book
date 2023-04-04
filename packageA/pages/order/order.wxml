@@ -1,0 +1,20 @@
+<view>
+  <van-tabs
+    animated
+    color="#8639FF"
+    title-active-color="#8639FF"
+    line-width="25px"
+    active="{{ active }}"
+    bind:change="onChange"
+    >
+    <van-tab title="待发货">
+      <goods-item stateText="待发货" btnText1="提醒卖家" />
+    </van-tab>
+    <van-tab title="待收货">
+      <goods-item stateText="已发货" btnText1="查看物流" />
+    </van-tab>
+    <van-tab title="全部订单">
+      <goods-item stateText="已发货" btnText2="售后" />
+    </van-tab>
+</van-tabs>
+</view>

@@ -1,0 +1,53 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/cart/cart",
+    "pages/my/my"
+  ],
+  "subPackages": [
+    {
+      "root": "packageA",
+      "name": "pkgA",
+      "pages": [
+        "pages/goodsDetail/goodsDetail",
+        "pages/search/search",
+        "pages/goodsList/goodsList",
+        "pages/address/address",
+        "pages/editAddress/editAddress",
+        "pages/order/order",
+        "pages/collect/collect",
+        "pages/trace/trace"
+      ]
+    }
+  ],
+  "usingComponents": {},
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#8639FF",
+    "navigationBarTitleText": "Books",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "custom": true,
+    "selectedColor": "#2867CE",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/static/index.png",
+        "selectedIconPath": "/static/index-2.png"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "text": "购物车",
+        "iconPath": "/static/cart.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "/static/my.png"
+      }
+    ]
+  }
+}

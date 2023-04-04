@@ -1,0 +1,11 @@
+<view>
+  <view>
+    <van-dropdown-menu active-color="#8639FF" bind:change="changeItem">
+      <van-dropdown-item title="分类" value="{{4}}" options="{{options1}}" bind:change="changeItem" />
+      <van-dropdown-item title="排序" options="{{options2}}" bind:change="handleSort"/>
+    </van-dropdown-menu>
+  </view>
+  <view>
+    <goods-item showNum="{{false}}" list="{{collectList}}" />
+  </view>
+</view>

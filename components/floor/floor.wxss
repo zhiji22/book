@@ -1,0 +1,63 @@
+.floor {
+  margin-top: 20rpx;
+}
+/* 文字 */
+.floor-text {
+  margin-bottom: 15rpx;
+}
+.floor-text .txt1 {
+  color: #CB8C9B;
+  font-weight: 700;
+  font-size: 40rpx;
+  margin-left: 20rpx;
+}
+
+/* 商品 */
+.floor-goods {
+  display: flex;
+  margin: 0 20rpx;
+}
+/* 第一个box */
+.floor-goods .floor-item {
+  height: 300rpx;
+  text-align: center;
+  justify-content: space-around;
+}
+.floor-goods .floor-item:first-child {
+  background-color: red;
+  margin-right: 10rpx;
+}
+.floor-goods .floor-item:first-child {
+  width: 33%;
+}
+.floor-goods .floor-item:first-child .img {
+  width: 100%;
+  height: 100%;
+}
+
+/* 第二个商品box */
+.floor-goods .floor-item:last-child {
+  width: 67%;
+}
+.floor-goods .floor-item:last-child .img-box {
+  float: left;
+  width: 97.1px;
+  height: 61.7px;
+  background-color: yellow;
+}
+.floor-goods .floor-item:last-child .img-box:nth-child(2n) {
+  margin-left: 10rpx;
+}
+.floor-goods .floor-item:last-child .img-box:nth-child(n+3) {
+  margin-top: 10rpx;
+}
+.floor-goods .floor-item:last-child .img {
+  width: 100%;
+  height: 100%;
+}
+.floor-goods .floor-item .img-box .img {
+  height: 100%;
+}
+.floor-goods .floor-item .img-box .img:first-child {
+  margin-bottom: 10rpx;
+}

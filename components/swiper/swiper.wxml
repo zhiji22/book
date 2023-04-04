@@ -1,0 +1,21 @@
+<view>
+  <swiper
+    indicator-dots="{{showDots}}"
+    indicator-active-color="#fff"
+    autoplay
+    easing-function="easeOutCubic"
+    style="{{'height:'+ swiperHeight + 'rpx'}}"
+    circular="true"
+    current="{{currentIndex}}"
+    bind:change="swiperChange"
+  >
+    <swiper-item
+      wx:for="{{swiperList ? swiperList : list}}"
+      wx:key="index"
+      bind:tap="goToGoodsDetail"
+      data-id="{{item.id}}"
+      >
+      <image src="{{item.src}}" class="img"/>
+    </swiper-item>
+  </swiper>
+</view>

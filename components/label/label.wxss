@@ -1,0 +1,29 @@
+.label {
+  width: 100%;
+  display: flex;
+  margin-top: 70rpx;
+  position: relative;
+}
+.label-txt {
+  font-size: 36rpx;
+  top: -57rpx;
+  left: 20rpx;
+  font-weight: 700;
+  position: absolute;
+}
+.item {
+  width: 18.3%;
+  text-align: center;
+  justify-content: space-around;
+  margin-top: 10rpx;
+}
+.img {
+  width: 60%;
+  margin: 0 auto;
+  display: block;
+  height: 60rpx;
+}
+.txt {
+  font-size: 30rpx;
+  color: #333;
+}

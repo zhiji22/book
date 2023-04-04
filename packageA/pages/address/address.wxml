@@ -1,0 +1,37 @@
+<view class="address">
+  <view class="content">
+    <text class="txt">收货地址</text>
+      <view
+        class="address-box"
+        wx:for="{{addressList}}"
+        wx:key="{{item.id}}"
+      >
+        <view style="width: 10%; margin: 0 5rpx;">
+          <van-radio name="1" icon-size="45rpx" />
+        </view>
+        <view style="width: 75%;">
+          <view class="name-phone">
+            <text>{{item.user_name}}</text>
+            <text>{{item.user_number}}</text>
+            <van-tag
+              color="#7232dd"
+              type="primary"
+              round
+              wx:if="{{item.default}}"
+            >默认</van-tag>
+          </view>
+          <view class="addr-box">{{item.user_detail_addr}}</view>
+        </view>
+        <view
+          style="width: 10%;margin-left: 10rpx;" 
+          bindtap="goToEditAddress"
+          data-id="{{item.id}}"
+          >
+            <van-icon name="edit" size="20px" style="margin-left: 10rpx;" />
+        </view>
+      </view>
+  </view>
+  <view class="btn-box">
+    <van-button type="info" round bindtap="goToEditAddress">新增地址</van-button>
+  </view>
+</view>

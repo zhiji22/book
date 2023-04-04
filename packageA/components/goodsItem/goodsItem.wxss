@@ -1,0 +1,35 @@
+.custom-class {
+  background-color: #000 !important;
+  border-radius: 30rpx;
+}
+.goods-box {
+  width: 100%;
+  background-color: #fff;
+  /* background-color: #fafafa; */
+  padding: 30rpx;
+  box-sizing: border-box;
+}
+/* 每个商品css */
+.btn-box {
+  width: 245rpx;
+  display: flex;
+  position: absolute;
+  top: 178rpx;
+  right: 10rpx;
+  display: flex;
+  justify-content: space-between;
+}
+/* 待发货文字 */
+.tags{
+  min-width: 90rpx;
+  color: #e0021c;
+  position: absolute;
+  top: 0;
+  right: -10rpx;
+}
+/* 商品数量 */
+.van-card__num {
+  position: absolute;
+  top: 80rpx;
+  right: -5rpx;
+}

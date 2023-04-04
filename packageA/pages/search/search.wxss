@@ -1,0 +1,41 @@
+.sticky-search {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+.sticky-search .van-search {
+  margin-top: -8rpx;
+  height: 117rpx;
+}
+
+/* 内容部分 */
+.van-index-anchor-wrapper {
+  background-color: #f7f8fa;
+}
+
+/* 搜索历史 */
+.history {
+  padding: 0 17rpx;
+}
+.history .history-title {
+  display: flex;
+  justify-content: space-between;
+  height: 84rpx;
+  align-items: center;
+  font-size: 32rpx;
+  border-bottom: 1px solid #efefef;
+}
+/* 搜索历史内容 */
+.history .history-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+.history .history-list .txt {
+  padding: 12rpx 20rpx;
+  margin-right: 20rpx;
+  flex-wrap: wrap;
+  margin-top: 10rpx;
+  text-align: center;
+  font-size: 33rpx;
+  background-color: #F7F7F7;
+}

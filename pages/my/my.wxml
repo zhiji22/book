@@ -1,0 +1,32 @@
+<view>
+  <view class="login-before" id="sss" wx:if="{{!hasUserInfo}}">
+    <view class="center">
+      <view class="img-box">
+        <van-image
+          round
+          width="5rem"
+          height="5rem"
+          fit="cover"
+          lazy-load
+          src="/static/head-picture.png"
+          wx:if="{{true}}"
+        />
+        <van-image use-error-slot wx:else>
+          <text slot="error">加载失败</text>
+        </van-image>
+      </view>
+      <view class="btn-box">
+        <van-button
+          color="#8639FF"
+          type="info"
+          round
+          bind:tap="showPopup"
+          >一键登录</van-button>
+      </view>
+      <view class="txt-box">
+        <text class="txt">登录后尽享更多权益</text>
+      </view>
+    </view>
+  </view>
+  <login-after userInfo="{{userInfo}}" wx:else />
+</view>

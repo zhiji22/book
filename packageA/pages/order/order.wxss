@@ -1,0 +1,9 @@
+
+
+.van-tabs {
+  padding-top: 10rpx;
+}
+/* 线条位置 */
+.van-tabs__line {
+  left: -2px !important;
+}

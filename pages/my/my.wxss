@@ -1,0 +1,30 @@
+.login-before {
+  padding: 200rpx 60rpx;
+}
+.login-before .center {
+  width: 630rpx;
+  height: 600rpx;
+  text-align: center;
+}
+/* 图片 */
+.login-before .center .img-box {
+  width: 5rem;
+  height: 5rem;
+  margin: 0 auto;
+}
+/* 按钮 */
+.login-before .center .btn-box {
+  padding: 30rpx 0;
+}
+.login-before .center .btn-box button {
+  width: 600rpx;
+  /* line-height: ; */
+  height: 90rpx;
+  border: 0;
+}
+
+/* 文字 */
+.login-before .center .txt {
+  font-size: 30rpx;
+  color: #cccccc;
+}

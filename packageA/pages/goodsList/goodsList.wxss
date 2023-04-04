@@ -1,0 +1,34 @@
+.title-box {
+  height: 40rpx;
+  padding: 40rpx 25rpx 35rpx;
+}
+.title-box .txt {
+  color: #090a0a99;
+  font-size: 38rpx;
+  font-weight: 700;
+}
+/* 商品box */
+.van-card {
+  margin-bottom: 20rpx;
+  position: relative;
+}
+.van-card .detail-txt {
+  color: #455A6499;
+  position: absolute;
+  right: 45rpx;
+  top: 175rpx;
+}
+
+.van-card .van-card__desc {
+  height: 90rpx;
+  white-space: wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* 折扣 */
+.van-card__origin-price, .origin-price-class {
+  color: #EE0A24 !important;
+}
+/* .van-card .discount {
+  position: absolute;
+} */
