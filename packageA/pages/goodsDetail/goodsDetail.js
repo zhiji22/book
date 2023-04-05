@@ -35,8 +35,8 @@ Page({
     // 绑定store
     this.storeBindings = createStoreBindings(this, {
       store,
-      fields: ['goodsCardId', 'collectIds'],
-      actions: ['addCartNum', 'cutCartNum']
+      fields: ['goodsCardId', 'collectIds', 'isLogin'],
+      actions: ['addCartNum', 'cutCartNum', 'changeLoginState']
     })
   },
   onUnload(){
@@ -82,6 +82,11 @@ Page({
   },
   // 收藏
   handleCollect() {
+    // 判断用户是否已登录
+    if(!this.data.isLogin) return wx.showToast({
+      title: '请先登录！',
+      icon: 'none'
+    })
     // 取消收藏
     if(this.data.icon === 'like') {
       this.setData({
@@ -119,6 +124,12 @@ Page({
   },
   // 加入购物
   handleAddCart(){
+    // 判断用户是否已登陆
+    if(!this.data.isLogin) return wx.showToast({
+      title: '请先登录！',
+      icon: 'none'
+    })
+
     showLoading()
     const timer = setTimeout(() => {
       const info = this.addCartNum(this.data.cartId);

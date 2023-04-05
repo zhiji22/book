@@ -1,5 +1,4 @@
 const Router = require('koa-router');
-const mysql = require('mysql');
 const { createConnection } = require('../../util/utils')
 
 const router = new Router({
@@ -25,12 +24,16 @@ router.get('/getAll', async (ctx) => {
   ctx.body = data;
 })
 
-// insert into
+// 添加收货地址
 router.post('/insert', async (ctx) => {
-  // 创建连接
+  // // 创建连接
   // const conn = createConnection()
 
-  // const sql = 'insert into book';
+  // // 更新数据语句
+  // const sql = 'insert into book values(?,?,?,?,?)';
+  // // 重置收货地址语句
+  // const sql2 = 'insert into book';
+
   // const data = await new Promise((resolve, reject) => { // koa下query需要promise封装
   //   conn.query(sql, (err, result) => {
   //     if(err) reject(err)

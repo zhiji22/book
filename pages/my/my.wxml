@@ -20,7 +20,7 @@
           color="#8639FF"
           type="info"
           round
-          bind:tap="showPopup"
+          bind:tap="getUserProfile"
           >一键登录</van-button>
       </view>
       <view class="txt-box">

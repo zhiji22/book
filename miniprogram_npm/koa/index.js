@@ -4,7 +4,7 @@ var __DEFINE__ = function(modId, func, req) { var m = { exports: {}, _tempexport
 var __REQUIRE__ = function(modId, source) { if(!__MODS__[modId]) return require(source); if(!__MODS__[modId].status) { var m = __MODS__[modId].m; m._exports = m._tempexports; var desp = Object.getOwnPropertyDescriptor(m, "exports"); if (desp && desp.configurable) Object.defineProperty(m, "exports", { set: function (val) { if(typeof val === "object" && val !== m._exports) { m._exports.__proto__ = val.__proto__; Object.keys(val).forEach(function (k) { m._exports[k] = val[k]; }); } m._tempexports = val }, get: function () { return m._tempexports; } }); __MODS__[modId].status = 1; __MODS__[modId].func(__MODS__[modId].req, m, m.exports); } return __MODS__[modId].m.exports; };
 var __REQUIRE_WILDCARD__ = function(obj) { if(obj && obj.__esModule) { return obj; } else { var newObj = {}; if(obj != null) { for(var k in obj) { if (Object.prototype.hasOwnProperty.call(obj, k)) newObj[k] = obj[k]; } } newObj.default = obj; return newObj; } };
 var __REQUIRE_DEFAULT__ = function(obj) { return obj && obj.__esModule ? obj.default : obj; };
-__DEFINE__(1680436562770, function(require, module, exports) {
+__DEFINE__(1680696071995, function(require, module, exports) {
 
 
 
@@ -320,8 +320,8 @@ function respond(ctx) {
 
 module.exports.HttpError = HttpError;
 
-}, function(modId) {var map = {"./response":1680436562771,"./context":1680436562772,"./request":1680436562773}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562771, function(require, module, exports) {
+}, function(modId) {var map = {"./response":1680696071996,"./context":1680696071997,"./request":1680696071998}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1680696071996, function(require, module, exports) {
 
 
 
@@ -912,7 +912,7 @@ if (util.inspect.custom) {
 }
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562772, function(require, module, exports) {
+__DEFINE__(1680696071997, function(require, module, exports) {
 
 
 
@@ -1166,7 +1166,7 @@ delegate(proto, 'request')
   .getter('ip');
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562773, function(require, module, exports) {
+__DEFINE__(1680696071998, function(require, module, exports) {
 
 
 
@@ -1895,7 +1895,7 @@ if (util.inspect.custom) {
 }
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-return __REQUIRE__(1680436562770);
+return __REQUIRE__(1680696071995);
 })()
 //miniprogram-npm-outsideDeps=["is-generator-function","debug","on-finished","assert","koa-compose","statuses","events","util","stream","http","only","koa-convert","depd","http-errors","async_hooks","content-disposition","cache-content-type","escape-html","type-is","destroy","path","vary","encodeurl","http-assert","delegates","cookies","url","net","accepts","content-type","parseurl","querystring","fresh"]
 //# sourceMappingURL=index.js.map

@@ -32,8 +32,24 @@ Page({
   // methods
   // 保存
   handleSave() {
-    console.log('save...')
-    this.showLoading()
+    // 验证是否所有数据已填
+    const flag = this.data.userName && this.data.userNumber && this.data.userArea;
+    if(!flag) return Toast.fail('还有必要的数据没有填哦！')
+    // 判断手机号码是否输入的是数字
+    let results = parseInt(this.data.userNumber)
+    if(results.toString().length < this.data.userNumber.length) {
+      return Toast.fail('手机号码一定为数字哦')
+    }else if(results.toString().length != 11) return Toast.fail('手机号码为11位')
+    wx.showLoading({
+      title: '保存中...',
+    })
+    let obj = {
+      userName: this.data.userName,
+      userNumber: this.data.userNumber,
+      userArea: this.data.userArea,
+      userDetailAddr: this.data.userDetailAddr,
+      checked: this.data.checked
+    }
   },
 
   // 删除
@@ -46,7 +62,7 @@ Page({
   showLoading() {
     Toast.loading({
       message: '加载中...',
-      forbidClick: false,
+      forbidClick: true,
       // 展示时间
       duration: 800
     });
@@ -63,7 +79,7 @@ Page({
   },
 
   // 设置默认地址事件
-  onChange(e) {
+  handleCheckbox(e) {
     this.setData({
       checked: !this.data.checked
     })
@@ -92,13 +108,20 @@ Page({
   // 确定选择区域信息
   handleConfirm(e) {
     let arr = ''
-    e.detail.values.forEach(item => {
-      arr += item.name
+    e.detail.values.forEach((item, index) => {
+      if(index ==2) return arr += item.name
+      arr += item.name + ' '
     })
-    console.log(arr)
     this.setData({ 
       showPopup: false,
-      userArea: ''
+      userArea: arr
+    })
+  },
+
+  // 用户取消选择区域
+  handleCancel() {
+    this.setData({
+      showPopup: false
     })
   }
 }) 

@@ -4,10 +4,10 @@ var __DEFINE__ = function(modId, func, req) { var m = { exports: {}, _tempexport
 var __REQUIRE__ = function(modId, source) { if(!__MODS__[modId]) return require(source); if(!__MODS__[modId].status) { var m = __MODS__[modId].m; m._exports = m._tempexports; var desp = Object.getOwnPropertyDescriptor(m, "exports"); if (desp && desp.configurable) Object.defineProperty(m, "exports", { set: function (val) { if(typeof val === "object" && val !== m._exports) { m._exports.__proto__ = val.__proto__; Object.keys(val).forEach(function (k) { m._exports[k] = val[k]; }); } m._tempexports = val }, get: function () { return m._tempexports; } }); __MODS__[modId].status = 1; __MODS__[modId].func(__MODS__[modId].req, m, m.exports); } return __MODS__[modId].m.exports; };
 var __REQUIRE_WILDCARD__ = function(obj) { if(obj && obj.__esModule) { return obj; } else { var newObj = {}; if(obj != null) { for(var k in obj) { if (Object.prototype.hasOwnProperty.call(obj, k)) newObj[k] = obj[k]; } } newObj.default = obj; return newObj; } };
 var __REQUIRE_DEFAULT__ = function(obj) { return obj && obj.__esModule ? obj.default : obj; };
-__DEFINE__(1680436562709, function(require, module, exports) {
+__DEFINE__(1680696071935, function(require, module, exports) {
 /*!
  * depd
- * Copyright(c) 2014-2018 Douglas Christopher Wilson
+ * Copyright(c) 2014-2017 Douglas Christopher Wilson
  * MIT Licensed
  */
 
@@ -15,6 +15,8 @@ __DEFINE__(1680436562709, function(require, module, exports) {
  * Module dependencies.
  */
 
+var callSiteToString = require('./lib/compat').callSiteToString
+var eventListenerCount = require('./lib/compat').eventListenerCount
 var relative = require('path').relative
 
 /**
@@ -97,7 +99,7 @@ function createStackString (stack) {
   }
 
   for (var i = 0; i < stack.length; i++) {
-    str += '\n    at ' + stack[i].toString()
+    str += '\n    at ' + callSiteToString(stack[i])
   }
 
   return str
@@ -134,30 +136,11 @@ function depd (namespace) {
 }
 
 /**
- * Determine if event emitter has listeners of a given type.
- *
- * The way to do this check is done three different ways in Node.js >= 0.8
- * so this consolidates them into a minimal set using instance methods.
- *
- * @param {EventEmitter} emitter
- * @param {string} type
- * @returns {boolean}
- * @private
- */
-
-function eehaslisteners (emitter, type) {
-  var count = typeof emitter.listenerCount !== 'function'
-    ? emitter.listeners(type).length
-    : emitter.listenerCount(type)
-
-  return count > 0
-}
-
-/**
  * Determine if namespace is ignored.
  */
 
 function isignored (namespace) {
+  /* istanbul ignore next: tested in a child processs */
   if (process.noDeprecation) {
     // --no-deprecation support
     return true
@@ -174,6 +157,7 @@ function isignored (namespace) {
  */
 
 function istraced (namespace) {
+  /* istanbul ignore next: tested in a child processs */
   if (process.traceDeprecation) {
     // --trace-deprecation support
     return true
@@ -190,7 +174,7 @@ function istraced (namespace) {
  */
 
 function log (message, site) {
-  var haslisteners = eehaslisteners(process, 'deprecation')
+  var haslisteners = eventListenerCount(process, 'deprecation') !== 0
 
   // abort early if no destination
   if (!haslisteners && this._ignored) {
@@ -333,7 +317,7 @@ function formatPlain (msg, caller, stack) {
   // add stack trace
   if (this._traced) {
     for (var i = 0; i < stack.length; i++) {
-      formatted += '\n    at ' + stack[i].toString()
+      formatted += '\n    at ' + callSiteToString(stack[i])
     }
 
     return formatted
@@ -358,7 +342,7 @@ function formatColor (msg, caller, stack) {
   // add stack trace
   if (this._traced) {
     for (var i = 0; i < stack.length; i++) {
-      formatted += '\n    \x1b[36mat ' + stack[i].toString() + '\x1b[39m' // cyan
+      formatted += '\n    \x1b[36mat ' + callSiteToString(stack[i]) + '\x1b[39m' // cyan
     }
 
     return formatted
@@ -423,18 +407,18 @@ function wrapfunction (fn, message) {
   }
 
   var args = createArgumentsString(fn.length)
+  var deprecate = this // eslint-disable-line no-unused-vars
   var stack = getStack()
   var site = callSiteLocation(stack[1])
 
   site.name = fn.name
 
-  // eslint-disable-next-line no-new-func
-  var deprecatedfn = new Function('fn', 'log', 'deprecate', 'message', 'site',
+   // eslint-disable-next-line no-eval
+  var deprecatedfn = eval('(function (' + args + ') {\n' +
     '"use strict"\n' +
-    'return function (' + args + ') {' +
     'log.call(deprecate, message, site)\n' +
     'return fn.apply(this, arguments)\n' +
-    '}')(fn, log, this, message, site)
+    '})')
 
   return deprecatedfn
 }
@@ -544,8 +528,221 @@ function DeprecationError (namespace, message, stack) {
   return error
 }
 
-}, function(modId) {var map = {}; return __REQUIRE__(map[modId], modId); })
-return __REQUIRE__(1680436562709);
+}, function(modId) {var map = {"./lib/compat":1680696071936}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1680696071936, function(require, module, exports) {
+/*!
+ * depd
+ * Copyright(c) 2014-2015 Douglas Christopher Wilson
+ * MIT Licensed
+ */
+
+
+
+/**
+ * Module dependencies.
+ * @private
+ */
+
+var EventEmitter = require('events').EventEmitter
+
+/**
+ * Module exports.
+ * @public
+ */
+
+lazyProperty(module.exports, 'callSiteToString', function callSiteToString () {
+  var limit = Error.stackTraceLimit
+  var obj = {}
+  var prep = Error.prepareStackTrace
+
+  function prepareObjectStackTrace (obj, stack) {
+    return stack
+  }
+
+  Error.prepareStackTrace = prepareObjectStackTrace
+  Error.stackTraceLimit = 2
+
+  // capture the stack
+  Error.captureStackTrace(obj)
+
+  // slice the stack
+  var stack = obj.stack.slice()
+
+  Error.prepareStackTrace = prep
+  Error.stackTraceLimit = limit
+
+  return stack[0].toString ? toString : require('./callsite-tostring')
+})
+
+lazyProperty(module.exports, 'eventListenerCount', function eventListenerCount () {
+  return EventEmitter.listenerCount || require('./event-listener-count')
+})
+
+/**
+ * Define a lazy property.
+ */
+
+function lazyProperty (obj, prop, getter) {
+  function get () {
+    var val = getter()
+
+    Object.defineProperty(obj, prop, {
+      configurable: true,
+      enumerable: true,
+      value: val
+    })
+
+    return val
+  }
+
+  Object.defineProperty(obj, prop, {
+    configurable: true,
+    enumerable: true,
+    get: get
+  })
+}
+
+/**
+ * Call toString() on the obj
+ */
+
+function toString (obj) {
+  return obj.toString()
+}
+
+}, function(modId) { var map = {"./callsite-tostring":1680696071937,"./event-listener-count":1680696071938}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1680696071937, function(require, module, exports) {
+/*!
+ * depd
+ * Copyright(c) 2014 Douglas Christopher Wilson
+ * MIT Licensed
+ */
+
+
+
+/**
+ * Module exports.
+ */
+
+module.exports = callSiteToString
+
+/**
+ * Format a CallSite file location to a string.
+ */
+
+function callSiteFileLocation (callSite) {
+  var fileName
+  var fileLocation = ''
+
+  if (callSite.isNative()) {
+    fileLocation = 'native'
+  } else if (callSite.isEval()) {
+    fileName = callSite.getScriptNameOrSourceURL()
+    if (!fileName) {
+      fileLocation = callSite.getEvalOrigin()
+    }
+  } else {
+    fileName = callSite.getFileName()
+  }
+
+  if (fileName) {
+    fileLocation += fileName
+
+    var lineNumber = callSite.getLineNumber()
+    if (lineNumber != null) {
+      fileLocation += ':' + lineNumber
+
+      var columnNumber = callSite.getColumnNumber()
+      if (columnNumber) {
+        fileLocation += ':' + columnNumber
+      }
+    }
+  }
+
+  return fileLocation || 'unknown source'
+}
+
+/**
+ * Format a CallSite to a string.
+ */
+
+function callSiteToString (callSite) {
+  var addSuffix = true
+  var fileLocation = callSiteFileLocation(callSite)
+  var functionName = callSite.getFunctionName()
+  var isConstructor = callSite.isConstructor()
+  var isMethodCall = !(callSite.isToplevel() || isConstructor)
+  var line = ''
+
+  if (isMethodCall) {
+    var methodName = callSite.getMethodName()
+    var typeName = getConstructorName(callSite)
+
+    if (functionName) {
+      if (typeName && functionName.indexOf(typeName) !== 0) {
+        line += typeName + '.'
+      }
+
+      line += functionName
+
+      if (methodName && functionName.lastIndexOf('.' + methodName) !== functionName.length - methodName.length - 1) {
+        line += ' [as ' + methodName + ']'
+      }
+    } else {
+      line += typeName + '.' + (methodName || '<anonymous>')
+    }
+  } else if (isConstructor) {
+    line += 'new ' + (functionName || '<anonymous>')
+  } else if (functionName) {
+    line += functionName
+  } else {
+    addSuffix = false
+    line += fileLocation
+  }
+
+  if (addSuffix) {
+    line += ' (' + fileLocation + ')'
+  }
+
+  return line
+}
+
+/**
+ * Get constructor name of reviver.
+ */
+
+function getConstructorName (obj) {
+  var receiver = obj.receiver
+  return (receiver.constructor && receiver.constructor.name) || null
+}
+
+}, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1680696071938, function(require, module, exports) {
+/*!
+ * depd
+ * Copyright(c) 2015 Douglas Christopher Wilson
+ * MIT Licensed
+ */
+
+
+
+/**
+ * Module exports.
+ * @public
+ */
+
+module.exports = eventListenerCount
+
+/**
+ * Get the count of listeners on an event emitter of a specific type.
+ */
+
+function eventListenerCount (emitter, type) {
+  return emitter.listeners(type).length
+}
+
+}, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
+return __REQUIRE__(1680696071935);
 })()
-//miniprogram-npm-outsideDeps=["path"]
+//miniprogram-npm-outsideDeps=["path","events"]
 //# sourceMappingURL=index.js.map

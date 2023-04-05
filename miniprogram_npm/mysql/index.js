@@ -4,7 +4,7 @@ var __DEFINE__ = function(modId, func, req) { var m = { exports: {}, _tempexport
 var __REQUIRE__ = function(modId, source) { if(!__MODS__[modId]) return require(source); if(!__MODS__[modId].status) { var m = __MODS__[modId].m; m._exports = m._tempexports; var desp = Object.getOwnPropertyDescriptor(m, "exports"); if (desp && desp.configurable) Object.defineProperty(m, "exports", { set: function (val) { if(typeof val === "object" && val !== m._exports) { m._exports.__proto__ = val.__proto__; Object.keys(val).forEach(function (k) { m._exports[k] = val[k]; }); } m._tempexports = val }, get: function () { return m._tempexports; } }); __MODS__[modId].status = 1; __MODS__[modId].func(__MODS__[modId].req, m, m.exports); } return __MODS__[modId].m.exports; };
 var __REQUIRE_WILDCARD__ = function(obj) { if(obj && obj.__esModule) { return obj; } else { var newObj = {}; if(obj != null) { for(var k in obj) { if (Object.prototype.hasOwnProperty.call(obj, k)) newObj[k] = obj[k]; } } newObj.default = obj; return newObj; } };
 var __REQUIRE_DEFAULT__ = function(obj) { return obj && obj.__esModule ? obj.default : obj; };
-__DEFINE__(1680436562781, function(require, module, exports) {
+__DEFINE__(1680696072007, function(require, module, exports) {
 var Classes = Object.create(null);
 
 /**
@@ -167,8 +167,8 @@ function loadClass(className) {
   return Class;
 }
 
-}, function(modId) {var map = {"./lib/Connection":1680436562782,"./lib/ConnectionConfig":1680436562783,"./lib/Pool":1680436562832,"./lib/PoolCluster":1680436562834,"./lib/PoolConfig":1680436562835,"./lib/protocol/SqlString":1680436562830,"./lib/protocol/constants/types":1680436562807}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562782, function(require, module, exports) {
+}, function(modId) {var map = {"./lib/Connection":1680696072008,"./lib/ConnectionConfig":1680696072009,"./lib/Pool":1680696072058,"./lib/PoolCluster":1680696072060,"./lib/PoolConfig":1680696072061,"./lib/protocol/SqlString":1680696072056,"./lib/protocol/constants/types":1680696072033}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1680696072008, function(require, module, exports) {
 var Crypto           = require('crypto');
 var Events           = require('events');
 var Net              = require('net');
@@ -699,8 +699,8 @@ function wrapToDomain(ee, fn) {
   };
 }
 
-}, function(modId) { var map = {"./ConnectionConfig":1680436562783,"./protocol/Protocol":1680436562787,"./protocol/SqlString":1680436562830,"./protocol/sequences/Query":1680436562824}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562783, function(require, module, exports) {
+}, function(modId) { var map = {"./ConnectionConfig":1680696072009,"./protocol/Protocol":1680696072013,"./protocol/SqlString":1680696072056,"./protocol/sequences/Query":1680696072050}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1680696072009, function(require, module, exports) {
 var urlParse        = require('url').parse;
 var ClientConstants = require('./protocol/constants/client');
 var Charsets        = require('./protocol/constants/charsets');
@@ -911,8 +911,8 @@ ConnectionConfig.parseUrl = function(url) {
   return options;
 };
 
-}, function(modId) { var map = {"./protocol/constants/client":1680436562784,"./protocol/constants/charsets":1680436562785,"./protocol/constants/ssl_profiles":1680436562786}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562784, function(require, module, exports) {
+}, function(modId) { var map = {"./protocol/constants/client":1680696072010,"./protocol/constants/charsets":1680696072011,"./protocol/constants/ssl_profiles":1680696072012}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1680696072010, function(require, module, exports) {
 // Manually extracted from mysql-5.5.23/include/mysql_com.h
 exports.CLIENT_LONG_PASSWORD     = 1; /* new more secure passwords */
 exports.CLIENT_FOUND_ROWS        = 2; /* Found instead of affected rows */
@@ -941,7 +941,7 @@ exports.CLIENT_SSL_VERIFY_SERVER_CERT = 1073741824;
 exports.CLIENT_REMEMBER_OPTIONS       = 2147483648;
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562785, function(require, module, exports) {
+__DEFINE__(1680696072011, function(require, module, exports) {
 exports.BIG5_CHINESE_CI              = 1;
 exports.LATIN2_CZECH_CS              = 2;
 exports.DEC8_SWEDISH_CI              = 3;
@@ -1206,7 +1206,7 @@ exports.UTF8MB4  = exports.UTF8MB4_GENERAL_CI;
 exports.UTF32    = exports.UTF32_GENERAL_CI;
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562786, function(require, module, exports) {
+__DEFINE__(1680696072012, function(require, module, exports) {
 // Certificates for Amazon RDS
 exports['Amazon RDS'] = {
   ca: [
@@ -2689,7 +2689,7 @@ exports['Amazon RDS'] = {
 };
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562787, function(require, module, exports) {
+__DEFINE__(1680696072013, function(require, module, exports) {
 var Parser       = require('./Parser');
 var Sequences    = require('./sequences');
 var Packets      = require('./packets');
@@ -3154,8 +3154,8 @@ Protocol.prototype._debugPacket = function(incoming, packet) {
   console.log('%s%s %s %s\n', direction, threadId, packetName, packetPayload);
 };
 
-}, function(modId) { var map = {"./Parser":1680436562788,"./sequences":1680436562791,"./packets":1680436562794,"./PacketWriter":1680436562829}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562788, function(require, module, exports) {
+}, function(modId) { var map = {"./Parser":1680696072014,"./sequences":1680696072017,"./packets":1680696072020,"./PacketWriter":1680696072055}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1680696072014, function(require, module, exports) {
 var PacketHeader = require('./PacketHeader');
 var BigNumber    = require('bignumber.js');
 var Buffer       = require('safe-buffer').Buffer;
@@ -3648,8 +3648,8 @@ Parser.prototype._advanceToNextPacket = function() {
   this._packetOffset = null;
 };
 
-}, function(modId) { var map = {"./PacketHeader":1680436562789,"./BufferList":1680436562790}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562789, function(require, module, exports) {
+}, function(modId) { var map = {"./PacketHeader":1680696072015,"./BufferList":1680696072016}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1680696072015, function(require, module, exports) {
 module.exports = PacketHeader;
 function PacketHeader(length, number) {
   this.length = length;
@@ -3657,7 +3657,7 @@ function PacketHeader(length, number) {
 }
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562790, function(require, module, exports) {
+__DEFINE__(1680696072016, function(require, module, exports) {
 
 module.exports = BufferList;
 function BufferList() {
@@ -3685,7 +3685,7 @@ BufferList.prototype.push = function push(buf) {
 };
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562791, function(require, module, exports) {
+__DEFINE__(1680696072017, function(require, module, exports) {
 exports.ChangeUser = require('./ChangeUser');
 exports.Handshake = require('./Handshake');
 exports.Ping = require('./Ping');
@@ -3694,8 +3694,8 @@ exports.Quit = require('./Quit');
 exports.Sequence = require('./Sequence');
 exports.Statistics = require('./Statistics');
 
-}, function(modId) { var map = {"./ChangeUser":1680436562792,"./Handshake":1680436562822,"./Ping":1680436562823,"./Query":1680436562824,"./Quit":1680436562827,"./Sequence":1680436562793,"./Statistics":1680436562828}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562792, function(require, module, exports) {
+}, function(modId) { var map = {"./ChangeUser":1680696072018,"./Handshake":1680696072048,"./Ping":1680696072049,"./Query":1680696072050,"./Quit":1680696072053,"./Sequence":1680696072019,"./Statistics":1680696072054}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1680696072018, function(require, module, exports) {
 var Sequence = require('./Sequence');
 var Util     = require('util');
 var Packets  = require('../packets');
@@ -3764,8 +3764,8 @@ ChangeUser.prototype['ErrorPacket'] = function(packet) {
   this.end(err);
 };
 
-}, function(modId) { var map = {"./Sequence":1680436562793,"../packets":1680436562794,"../Auth":1680436562821}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562793, function(require, module, exports) {
+}, function(modId) { var map = {"./Sequence":1680696072019,"../packets":1680696072020,"../Auth":1680696072047}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1680696072019, function(require, module, exports) {
 var Util           = require('util');
 var EventEmitter   = require('events').EventEmitter;
 var Packets        = require('../packets');
@@ -3892,8 +3892,8 @@ Sequence.prototype._onTimeout = function _onTimeout() {
   this.emit('timeout');
 };
 
-}, function(modId) { var map = {"../packets":1680436562794,"../constants/errors":1680436562819,"../Timer":1680436562820}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562794, function(require, module, exports) {
+}, function(modId) { var map = {"../packets":1680696072020,"../constants/errors":1680696072045,"../Timer":1680696072046}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1680696072020, function(require, module, exports) {
 exports.AuthSwitchRequestPacket = require('./AuthSwitchRequestPacket');
 exports.AuthSwitchResponsePacket = require('./AuthSwitchResponsePacket');
 exports.ClientAuthenticationPacket = require('./ClientAuthenticationPacket');
@@ -3918,8 +3918,8 @@ exports.SSLRequestPacket = require('./SSLRequestPacket');
 exports.StatisticsPacket = require('./StatisticsPacket');
 exports.UseOldPasswordPacket = require('./UseOldPasswordPacket');
 
-}, function(modId) { var map = {"./AuthSwitchRequestPacket":1680436562795,"./AuthSwitchResponsePacket":1680436562796,"./ClientAuthenticationPacket":1680436562797,"./ComChangeUserPacket":1680436562798,"./ComPingPacket":1680436562799,"./ComQueryPacket":1680436562800,"./ComQuitPacket":1680436562801,"./ComStatisticsPacket":1680436562802,"./EmptyPacket":1680436562803,"./EofPacket":1680436562804,"./ErrorPacket":1680436562805,"./Field":1680436562806,"./FieldPacket":1680436562808,"./HandshakeInitializationPacket":1680436562809,"./LocalDataFilePacket":1680436562810,"./LocalInfileRequestPacket":1680436562811,"./OkPacket":1680436562812,"./OldPasswordPacket":1680436562813,"./ResultSetHeaderPacket":1680436562814,"./RowDataPacket":1680436562815,"./SSLRequestPacket":1680436562816,"./StatisticsPacket":1680436562817,"./UseOldPasswordPacket":1680436562818}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562795, function(require, module, exports) {
+}, function(modId) { var map = {"./AuthSwitchRequestPacket":1680696072021,"./AuthSwitchResponsePacket":1680696072022,"./ClientAuthenticationPacket":1680696072023,"./ComChangeUserPacket":1680696072024,"./ComPingPacket":1680696072025,"./ComQueryPacket":1680696072026,"./ComQuitPacket":1680696072027,"./ComStatisticsPacket":1680696072028,"./EmptyPacket":1680696072029,"./EofPacket":1680696072030,"./ErrorPacket":1680696072031,"./Field":1680696072032,"./FieldPacket":1680696072034,"./HandshakeInitializationPacket":1680696072035,"./LocalDataFilePacket":1680696072036,"./LocalInfileRequestPacket":1680696072037,"./OkPacket":1680696072038,"./OldPasswordPacket":1680696072039,"./ResultSetHeaderPacket":1680696072040,"./RowDataPacket":1680696072041,"./SSLRequestPacket":1680696072042,"./StatisticsPacket":1680696072043,"./UseOldPasswordPacket":1680696072044}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1680696072021, function(require, module, exports) {
 module.exports = AuthSwitchRequestPacket;
 function AuthSwitchRequestPacket(options) {
   options = options || {};
@@ -3942,7 +3942,7 @@ AuthSwitchRequestPacket.prototype.write = function write(writer) {
 };
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562796, function(require, module, exports) {
+__DEFINE__(1680696072022, function(require, module, exports) {
 module.exports = AuthSwitchResponsePacket;
 function AuthSwitchResponsePacket(options) {
   options = options || {};
@@ -3959,7 +3959,7 @@ AuthSwitchResponsePacket.prototype.write = function write(writer) {
 };
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562797, function(require, module, exports) {
+__DEFINE__(1680696072023, function(require, module, exports) {
 var Buffer = require('safe-buffer').Buffer;
 
 module.exports = ClientAuthenticationPacket;
@@ -4016,7 +4016,7 @@ ClientAuthenticationPacket.prototype.write = function(writer) {
 };
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562798, function(require, module, exports) {
+__DEFINE__(1680696072024, function(require, module, exports) {
 module.exports = ComChangeUserPacket;
 function ComChangeUserPacket(options) {
   options = options || {};
@@ -4045,7 +4045,7 @@ ComChangeUserPacket.prototype.write = function(writer) {
 };
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562799, function(require, module, exports) {
+__DEFINE__(1680696072025, function(require, module, exports) {
 module.exports = ComPingPacket;
 function ComPingPacket() {
   this.command = 0x0e;
@@ -4060,7 +4060,7 @@ ComPingPacket.prototype.parse = function(parser) {
 };
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562800, function(require, module, exports) {
+__DEFINE__(1680696072026, function(require, module, exports) {
 module.exports = ComQueryPacket;
 function ComQueryPacket(sql) {
   this.command = 0x03;
@@ -4078,7 +4078,7 @@ ComQueryPacket.prototype.parse = function(parser) {
 };
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562801, function(require, module, exports) {
+__DEFINE__(1680696072027, function(require, module, exports) {
 module.exports = ComQuitPacket;
 function ComQuitPacket() {
   this.command = 0x01;
@@ -4093,7 +4093,7 @@ ComQuitPacket.prototype.write = function write(writer) {
 };
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562802, function(require, module, exports) {
+__DEFINE__(1680696072028, function(require, module, exports) {
 module.exports = ComStatisticsPacket;
 function ComStatisticsPacket() {
   this.command = 0x09;
@@ -4108,7 +4108,7 @@ ComStatisticsPacket.prototype.parse = function(parser) {
 };
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562803, function(require, module, exports) {
+__DEFINE__(1680696072029, function(require, module, exports) {
 module.exports = EmptyPacket;
 function EmptyPacket() {
 }
@@ -4120,7 +4120,7 @@ EmptyPacket.prototype.write = function write() {
 };
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562804, function(require, module, exports) {
+__DEFINE__(1680696072030, function(require, module, exports) {
 module.exports = EofPacket;
 function EofPacket(options) {
   options = options || {};
@@ -4148,7 +4148,7 @@ EofPacket.prototype.write = function(writer) {
 };
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562805, function(require, module, exports) {
+__DEFINE__(1680696072031, function(require, module, exports) {
 module.exports = ErrorPacket;
 function ErrorPacket(options) {
   options = options || {};
@@ -4186,7 +4186,7 @@ ErrorPacket.prototype.write = function(writer) {
 };
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562806, function(require, module, exports) {
+__DEFINE__(1680696072032, function(require, module, exports) {
 var Types = require('../constants/types');
 
 module.exports = Field;
@@ -4214,8 +4214,8 @@ Field.prototype.geometry = function () {
   return this.parser.parseGeometryValue();
 };
 
-}, function(modId) { var map = {"../constants/types":1680436562807}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562807, function(require, module, exports) {
+}, function(modId) { var map = {"../constants/types":1680696072033}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1680696072033, function(require, module, exports) {
 /**
  * MySQL type constants
  *
@@ -4290,7 +4290,7 @@ exports[254] = 'STRING';
 exports[255] = 'GEOMETRY';
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562808, function(require, module, exports) {
+__DEFINE__(1680696072034, function(require, module, exports) {
 module.exports = FieldPacket;
 function FieldPacket(options) {
   options = options || {};
@@ -4386,7 +4386,7 @@ FieldPacket.prototype.write = function(writer) {
 };
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562809, function(require, module, exports) {
+__DEFINE__(1680696072035, function(require, module, exports) {
 var Buffer = require('safe-buffer').Buffer;
 var Client = require('../constants/client');
 
@@ -4491,8 +4491,8 @@ HandshakeInitializationPacket.prototype.scrambleBuff = function() {
   return buffer;
 };
 
-}, function(modId) { var map = {"../constants/client":1680436562784}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562810, function(require, module, exports) {
+}, function(modId) { var map = {"../constants/client":1680696072010}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1680696072036, function(require, module, exports) {
 module.exports = LocalDataFilePacket;
 
 /**
@@ -4510,7 +4510,7 @@ LocalDataFilePacket.prototype.write = function(writer) {
 };
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562811, function(require, module, exports) {
+__DEFINE__(1680696072037, function(require, module, exports) {
 module.exports = LocalInfileRequestPacket;
 function LocalInfileRequestPacket(options) {
   options = options || {};
@@ -4534,7 +4534,7 @@ LocalInfileRequestPacket.prototype.write = function write(writer) {
 };
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562812, function(require, module, exports) {
+__DEFINE__(1680696072038, function(require, module, exports) {
 
 // Language-neutral expression to match ER_UPDATE_INFO
 var ER_UPDATE_INFO_REGEXP = /^[^:0-9]+: [0-9]+[^:0-9]+: ([0-9]+)[^:0-9]+: [0-9]+[^:0-9]*$/;
@@ -4581,7 +4581,7 @@ OkPacket.prototype.write = function(writer) {
 };
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562813, function(require, module, exports) {
+__DEFINE__(1680696072039, function(require, module, exports) {
 module.exports = OldPasswordPacket;
 function OldPasswordPacket(options) {
   options = options || {};
@@ -4598,7 +4598,7 @@ OldPasswordPacket.prototype.write = function(writer) {
 };
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562814, function(require, module, exports) {
+__DEFINE__(1680696072040, function(require, module, exports) {
 module.exports = ResultSetHeaderPacket;
 function ResultSetHeaderPacket(options) {
   options = options || {};
@@ -4615,7 +4615,7 @@ ResultSetHeaderPacket.prototype.write = function(writer) {
 };
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562815, function(require, module, exports) {
+__DEFINE__(1680696072041, function(require, module, exports) {
 var Types                        = require('../constants/types');
 var Charsets                     = require('../constants/charsets');
 var Field                        = require('./Field');
@@ -4747,8 +4747,8 @@ function typeMatch(type, list) {
   }
 }
 
-}, function(modId) { var map = {"../constants/types":1680436562807,"../constants/charsets":1680436562785,"./Field":1680436562806}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562816, function(require, module, exports) {
+}, function(modId) { var map = {"../constants/types":1680696072033,"../constants/charsets":1680696072011,"./Field":1680696072032}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1680696072042, function(require, module, exports) {
 // http://dev.mysql.com/doc/internals/en/ssl.html
 // http://dev.mysql.com/doc/internals/en/connection-phase-packets.html#packet-Protocol::SSLRequest
 
@@ -4777,8 +4777,8 @@ SSLRequestPacket.prototype.write = function(writer) {
   writer.writeFiller(23);
 };
 
-}, function(modId) { var map = {"../constants/client":1680436562784}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562817, function(require, module, exports) {
+}, function(modId) { var map = {"../constants/client":1680696072010}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1680696072043, function(require, module, exports) {
 module.exports = StatisticsPacket;
 function StatisticsPacket() {
   this.message      = undefined;
@@ -4801,7 +4801,7 @@ StatisticsPacket.prototype.write = function(writer) {
 };
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562818, function(require, module, exports) {
+__DEFINE__(1680696072044, function(require, module, exports) {
 module.exports = UseOldPasswordPacket;
 function UseOldPasswordPacket(options) {
   options = options || {};
@@ -4818,7 +4818,7 @@ UseOldPasswordPacket.prototype.write = function(writer) {
 };
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562819, function(require, module, exports) {
+__DEFINE__(1680696072045, function(require, module, exports) {
 /**
  * MySQL error constants
  *
@@ -7297,7 +7297,7 @@ exports[3229] = 'ER_GROUPING_ON_TIMESTAMP_IN_DST';
 exports[3230] = 'ER_CANT_START_SERVER_NAMED_PIPE';
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562820, function(require, module, exports) {
+__DEFINE__(1680696072046, function(require, module, exports) {
 var Timers = require('timers');
 
 module.exports = Timer;
@@ -7333,7 +7333,7 @@ Timer.prototype._onTimeout = function _onTimeout() {
 };
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562821, function(require, module, exports) {
+__DEFINE__(1680696072047, function(require, module, exports) {
 var Buffer = require('safe-buffer').Buffer;
 var Crypto = require('crypto');
 var Auth   = exports;
@@ -7504,7 +7504,7 @@ Auth.int32Read = function(buffer, offset){
 };
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562822, function(require, module, exports) {
+__DEFINE__(1680696072048, function(require, module, exports) {
 var Sequence        = require('./Sequence');
 var Util            = require('util');
 var Packets         = require('../packets');
@@ -7632,8 +7632,8 @@ Handshake.prototype['ErrorPacket'] = function(packet) {
   this.end(err);
 };
 
-}, function(modId) { var map = {"./Sequence":1680436562793,"../packets":1680436562794,"../Auth":1680436562821,"../constants/client":1680436562784}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562823, function(require, module, exports) {
+}, function(modId) { var map = {"./Sequence":1680696072019,"../packets":1680696072020,"../Auth":1680696072047,"../constants/client":1680696072010}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1680696072049, function(require, module, exports) {
 var Sequence = require('./Sequence');
 var Util     = require('util');
 var Packets  = require('../packets');
@@ -7654,8 +7654,8 @@ Ping.prototype.start = function() {
   this.emit('packet', new Packets.ComPingPacket());
 };
 
-}, function(modId) { var map = {"./Sequence":1680436562793,"../packets":1680436562794}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562824, function(require, module, exports) {
+}, function(modId) { var map = {"./Sequence":1680696072019,"../packets":1680696072020}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1680696072050, function(require, module, exports) {
 var ClientConstants = require('../constants/client');
 var fs              = require('fs');
 var Packets         = require('../packets');
@@ -7885,8 +7885,8 @@ Query.prototype.stream = function(options) {
   return stream;
 };
 
-}, function(modId) { var map = {"../constants/client":1680436562784,"../packets":1680436562794,"../ResultSet":1680436562825,"./Sequence":1680436562793,"../constants/server_status":1680436562826}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562825, function(require, module, exports) {
+}, function(modId) { var map = {"../constants/client":1680696072010,"../packets":1680696072020,"../ResultSet":1680696072051,"./Sequence":1680696072019,"../constants/server_status":1680696072052}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1680696072051, function(require, module, exports) {
 module.exports = ResultSet;
 function ResultSet(resultSetHeaderPacket) {
   this.resultSetHeaderPacket = resultSetHeaderPacket;
@@ -7896,7 +7896,7 @@ function ResultSet(resultSetHeaderPacket) {
 }
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562826, function(require, module, exports) {
+__DEFINE__(1680696072052, function(require, module, exports) {
 // Manually extracted from mysql-5.5.23/include/mysql_com.h
 
 /**
@@ -7938,7 +7938,7 @@ exports.SERVER_QUERY_WAS_SLOW          = 2048;
 exports.SERVER_PS_OUT_PARAMS = 4096;
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562827, function(require, module, exports) {
+__DEFINE__(1680696072053, function(require, module, exports) {
 var Sequence = require('./Sequence');
 var Util     = require('util');
 var Packets  = require('../packets');
@@ -7980,8 +7980,8 @@ Quit.prototype.start = function() {
   this.emit('packet', new Packets.ComQuitPacket());
 };
 
-}, function(modId) { var map = {"./Sequence":1680436562793,"../packets":1680436562794}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562828, function(require, module, exports) {
+}, function(modId) { var map = {"./Sequence":1680696072019,"../packets":1680696072020}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1680696072054, function(require, module, exports) {
 var Sequence = require('./Sequence');
 var Util     = require('util');
 var Packets  = require('../packets');
@@ -8013,8 +8013,8 @@ Statistics.prototype.determinePacket = function determinePacket(firstByte) {
   return undefined;
 };
 
-}, function(modId) { var map = {"./Sequence":1680436562793,"../packets":1680436562794}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562829, function(require, module, exports) {
+}, function(modId) { var map = {"./Sequence":1680696072019,"../packets":1680696072020}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1680696072055, function(require, module, exports) {
 var BIT_16            = Math.pow(2, 16);
 var BIT_24            = Math.pow(2, 24);
 var BUFFER_ALLOC_SIZE = Math.pow(2, 8);
@@ -8228,15 +8228,15 @@ PacketWriter.prototype._allocate = function _allocate(bytes) {
 };
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562830, function(require, module, exports) {
+__DEFINE__(1680696072056, function(require, module, exports) {
 module.exports = require('sqlstring');
 
-}, function(modId) { var map = {"sqlstring":1680436562831}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562831, function(require, module, exports) {
+}, function(modId) { var map = {"sqlstring":1680696072057}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1680696072057, function(require, module, exports) {
 module.exports = require('sqlstring');
 
-}, function(modId) { var map = {"sqlstring":1680436562831}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562832, function(require, module, exports) {
+}, function(modId) { var map = {"sqlstring":1680696072057}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1680696072058, function(require, module, exports) {
 var mysql          = require('../');
 var Connection     = require('./Connection');
 var EventEmitter   = require('events').EventEmitter;
@@ -8532,8 +8532,8 @@ function spliceConnection(array, connection) {
   }
 }
 
-}, function(modId) { var map = {"../":1680436562781,"./Connection":1680436562782,"./PoolConnection":1680436562833}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562833, function(require, module, exports) {
+}, function(modId) { var map = {"../":1680696072007,"./Connection":1680696072008,"./PoolConnection":1680696072059}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1680696072059, function(require, module, exports) {
 var inherits   = require('util').inherits;
 var Connection = require('./Connection');
 var Events     = require('events');
@@ -8600,8 +8600,8 @@ PoolConnection.prototype._removeFromPool = function _removeFromPool() {
   pool._purgeConnection(this);
 };
 
-}, function(modId) { var map = {"./Connection":1680436562782}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562834, function(require, module, exports) {
+}, function(modId) { var map = {"./Connection":1680696072008}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1680696072060, function(require, module, exports) {
 var Pool          = require('./Pool');
 var PoolConfig    = require('./PoolConfig');
 var PoolNamespace = require('./PoolNamespace');
@@ -8891,8 +8891,8 @@ function _cb(err) {
 
 function _noop() {}
 
-}, function(modId) { var map = {"./Pool":1680436562832,"./PoolConfig":1680436562835,"./PoolNamespace":1680436562836,"./PoolSelector":1680436562837}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562835, function(require, module, exports) {
+}, function(modId) { var map = {"./Pool":1680696072058,"./PoolConfig":1680696072061,"./PoolNamespace":1680696072062,"./PoolSelector":1680696072063}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1680696072061, function(require, module, exports) {
 
 var ConnectionConfig = require('./ConnectionConfig');
 
@@ -8926,8 +8926,8 @@ PoolConfig.prototype.newConnectionConfig = function newConnectionConfig() {
   return connectionConfig;
 };
 
-}, function(modId) { var map = {"./ConnectionConfig":1680436562783}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562836, function(require, module, exports) {
+}, function(modId) { var map = {"./ConnectionConfig":1680696072009}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1680696072062, function(require, module, exports) {
 var Connection   = require('./Connection');
 var PoolSelector = require('./PoolSelector');
 
@@ -9065,8 +9065,8 @@ PoolNamespace.prototype._getClusterNode = function _getClusterNode() {
     : null;
 };
 
-}, function(modId) { var map = {"./Connection":1680436562782,"./PoolSelector":1680436562837}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1680436562837, function(require, module, exports) {
+}, function(modId) { var map = {"./Connection":1680696072008,"./PoolSelector":1680696072063}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1680696072063, function(require, module, exports) {
 
 /**
  * PoolSelector
@@ -9100,7 +9100,7 @@ PoolSelector.ORDER = function PoolSelectorOrder() {
 };
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-return __REQUIRE__(1680436562781);
+return __REQUIRE__(1680696072007);
 })()
 //miniprogram-npm-outsideDeps=["crypto","events","net","tls","util","url","stream","bignumber.js","safe-buffer","timers","fs","readable-stream"]
 //# sourceMappingURL=index.js.map

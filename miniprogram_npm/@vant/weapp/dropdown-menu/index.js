@@ -34,10 +34,6 @@ var ARRAY = [];
             value: 'down',
             observer: 'updateChildrenData',
         },
-        safeAreaTabBar: {
-            type: Boolean,
-            value: false,
-        },
         closeOnClickOverlay: {
             type: Boolean,
             value: true,

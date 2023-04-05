@@ -63,10 +63,6 @@ var transition_1 = require("../mixins/transition");
             type: Boolean,
             value: true,
         },
-        rootPortal: {
-            type: Boolean,
-            value: false,
-        },
     },
     created: function () {
         this.observeClass();
