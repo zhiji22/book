@@ -1,3 +1,6 @@
+// import { createStoreBindings } from 'mobx-miniprogram-bindings';
+// import { store } from '../../../store/store'
+
 Page({
   data: {
     active: 2,
@@ -13,11 +16,14 @@ Page({
     openid: ''
   },
   onLoad(options) {
-    console.log(getApp())
     this.setData({
       canIUseGetUserProfile: true
     })
-    console.log(this.data.hasUserInfo)
+    // this.storeBindings = createStoreBindings(this, {
+    //   store,
+    //   fields: ['isLogin'],
+    //   actions: ['changeLoginState']
+    // })
   },
 
   onReady() {
@@ -55,15 +61,16 @@ Page({
   // 获取用户信息
   getUserProfile(e) {
     wx.getUserProfile({
-      desc: '获取您的微信个人信息',
-      success: async (res) => {
-        console.log(res)
+      desc: '获取用户信息',
+      success: (res) => {
+        wx.showLoading({
+          title: '加载中...',
+        })
         this.setData({
-          hasUserInfo: true,
           userInfo: res.userInfo
         })
         // 获取用户openid
-        await wx.login({
+        wx.login({
           success: (res) => {
             const code = res.code;
             const appid = 'wx59d03c28eb909b19';
@@ -75,6 +82,7 @@ Page({
                 this.setData({
                   openid: res.data.openid + 'gHp'
                 })
+                this.sendUserInfo()
               },
               fail: (err) => {
                 wx.showToast({
@@ -87,24 +95,33 @@ Page({
         })
         // 缓存
         // wx.setStorageSync('userInfo', res.userInfo);
-        // 判断是否有openid
-        console.log(this.data.openid)
-        if(this.data.openid) {
-          console.log(111)
-          // 保存到数据库
-          wx.request({
-            url: 'http://localhost:3000/app/user/addUser',
-            method: 'POST',
-            data: {
-              userInfo: res.userInfo,
-              openid: this.data.openid
-            },
-            success: (res) => {
-              console.log(res.data)
-            }
-          })
-        }
       }
     })
   },
+  // 发送用户信息 用于存储
+  sendUserInfo() {
+    wx.request({
+      url: 'http://localhost:3000/app/user/addUser',
+      method: 'POST',
+      data: {
+        userInfo: this.data.userInfo,
+        openid: this.data.openid
+      },
+      success: (res) => {
+        if(res.statusCode == 200) {
+          this.setData({
+            hasUserInfo: true,
+          })
+          wx.showToast({
+            title: '登录成功!',
+            icon: 'success'
+          })
+        } else wx.showToast({
+          title: '登录失败！',
+          icon: 'error'
+        })
+        wx.hideLoading()
+      }
+    })
+  }
 })

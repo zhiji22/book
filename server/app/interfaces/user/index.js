@@ -1,3 +1,10 @@
+/*
+ * @Description: 
+ * @Author: wanghong
+ * @Date: 2023-04-05 20:19:01
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-04-05 21:39:43
+ */
 const Router = require('koa-router');
 const { createConnection } = require('../../util/utils')
 
@@ -6,13 +13,25 @@ const router = new Router({
 });
 
 router.post('/addUser', async (ctx) => {
-  console.log(ctx.request.body.openid)
-  const {nickName: nickname, gender, avatarUrl}  = ctx.request.body;
-  // const conn = createConnection()
-  
-  // const sql = 'insert into users values(?, ?, ?, ?)'
+  const {openid, userInfo:{ nickName: nickname, gender, avatarUrl: avatarurl }}  = ctx.request.body;
+  const conn = createConnection()
+  // 先判断用户是否已存在
+  const selectSql = 'select * from users where openid = ?'
+  const result = await new Promise((resolve, reject) => {
+    conn.query(selectSql, [openid], (err, result) => {
+      if(err) reject(err)
+      resolve(result)
+
+      // 结束
+      conn.end()
+    })
+  })
+  if(result) return ctx.body = '用户已存在！'
+
+  // 插入数据
+  // const insertSql = 'insert into users values(?, ?, ?, ?, ?)'
   // const data = await new Promise((resolve, reject) => { // koa下query需要promise封装
-  //   conn.query(sql, [null, nickname, gender, avatarUrl], (err, result) => {
+  //   conn.query(insertSql, [null, openid, nickname, gender, avatarurl], (err, result) => {
   //     if(err) reject(err)
   //     resolve(result)
 
