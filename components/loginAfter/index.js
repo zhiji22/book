@@ -32,60 +32,89 @@ Component({
         icon: 'balance-list-o'
       }
     ],
-    collectList: []
+    collectList: [],
   },
   methods: {
     handleTapInfo(e) {
       const index = e.currentTarget.dataset.index;
-      if(index == 2) { //用户点击退出登录
-        Dialog.confirm({
-          context: this,
-          title: '退出',
-          message: '确认退出登录？',
-          width: '230px',
-        }).then(() => {
-            // on confirm
-            console.log('确认')
-          })
-          .catch(() => {
-            // on cancel
-            console.log('取消')
-          });
+      // 跳转到收货地址
+      if(index == 0) {
+        this.goToAddress()
+      }
+      // 关于作者
+      if(index == 1) {
+        this.goToAboutAuthor()
+      }
+      //用户点击退出登录
+      if(index == 2) {
+        this.handleQuitLogin()
       }
     },
+
+    // 跳转到关于作者页面
+    goToAboutAuthor() {
+      const url = '/packageA/pages/aboutAuthor/aboutAuthor';
+      this.handleNavigateTo(url)
+    },
+
+    // 跳转到收货地址
+    goToAddress() {
+      const url = '/packageA/pages/address/address'
+      this.handleNavigateTo(url)
+    },
+    // 用户退出登录
+    handleQuitLogin() {
+      Dialog.confirm({
+        context: this,
+        title: '退出',
+        message: '确认退出登录？',
+        width: '230px',
+      })
+      .then(() => {
+        // on confirm
+        console.log('确认')
+      })
+      .catch(() => {
+        // on cancel
+        console.log('取消')
+      });
+    },
+
     // 转去订单页面
     goToOrder() {
-      wx.navigateTo({
-        url: '/packageA/pages/order/order',
-      })
+      const url = '/packageA/pages/order/order';
+      this.handleNavigateTo(url)
     },
+
     // 跳转到购物车
-    // goToCart() {
-    //   console.log(111)
+    // goToShopCart() {
     //   wx.switchTab({
     //     url: '/pages/cart/cart',
     //   })
-    // }
+    // },
+
     goToMyOrderPage(e) {
       const index = e.target.dataset.index;
     },
+
     // 跳转到收藏页面
     goToCollect(e) {
       const name = e.target.dataset.name;
       if(name == 'collect') {
         const url = '/packageA/pages/collect/collect'
-        this.goNavigateTo(url)
+        this.handleNavigateTo(url)
       }else if (name == 'trace') {
         const url = '/packageA/pages/trace/trace'
-        this.goNavigateTo(url)
+        this.handleNavigateTo(url)
       }else {
         wx.switchTab({
           url: '/pages/cart/cart',
         })
       }
     },
+
     // 用于跳转
-    goNavigateTo(url) {
+    handleNavigateTo(url) {
       wx.navigateTo({
         url
       })

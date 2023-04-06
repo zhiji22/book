@@ -1,0 +1,25 @@
+<view class="about-author">
+  <view class="center-box">
+    <view class="img-box">
+      <van-image
+        class="img"
+        round
+        width="4.5rem"
+        height="4.5rem"
+        fit="cover"
+        lazy-load
+        src="{{userInfo.avatarUrl?userInfo.avatarUrl:''}}"
+      />
+      <text class="txt">11</text>
+    </view>
+    <view class="rate-box">
+      <van-rate
+        value="{{ value }}"
+        icon="like"
+        void-icon="like-o"
+        bind:change="onChange"
+        style="display: block;width: 100%;height: 100%;"
+      />
+    </view>
+  </view>
+</view>

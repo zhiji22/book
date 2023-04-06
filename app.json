@@ -16,7 +16,8 @@
         "pages/editAddress/editAddress",
         "pages/order/order",
         "pages/collect/collect",
-        "pages/trace/trace"
+        "pages/trace/trace",
+        "pages/aboutAuthor/aboutAuthor"
       ]
     }
   ],

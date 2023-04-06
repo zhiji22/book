@@ -38,20 +38,20 @@ Page({
       })
     };
     //获取用户globalData信息
-    // var n = wx.getStorageSync('userInfo')
-    // if (n.nickName != '' && n.nickName != null) {
-    //   this.setData({
-    //     userInfo: n,
-    //     hasUserInfo: true,
-    //     canIUseGetUserProfile: true
-    //   })
-    //   // 通过wx.login获取登录凭证（code），然后通过code去获取我们用户的openid
-    //   wx.login({
-    //     success: (res) => {
-    //       console.log(res);
-    //     },
-    //   })
-    // }
+    var n = wx.getStorageSync('userInfo')
+    if (n.nickName != '' && n.nickName != null) {
+      this.setData({
+        userInfo: n,
+        hasUserInfo: true,
+        canIUseGetUserProfile: true
+      })
+      // 通过wx.login获取登录凭证（code），然后通过code去获取我们用户的openid
+      wx.login({
+        success: (res) => {
+          console.log(res);
+        },
+      })
+    }
   },
   onUnload() {
 
@@ -94,7 +94,7 @@ Page({
           },
         })
         // 缓存
-        // wx.setStorageSync('userInfo', res.userInfo);
+        wx.setStorageSync('userInfo', res.userInfo);
       }
     })
   },
