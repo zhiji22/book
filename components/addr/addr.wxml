@@ -1,0 +1,19 @@
+<view class="address-box">
+  <view style="margin: 0 15rpx;">
+    <view class="item">
+      <view style="display: flex;">
+        <image src="/static/receive .png" />
+        <text>{{addressObj.user_name}}</text>
+      </view>
+      <view style="display: flex;" style="margin-right: 70rpx;">
+        <image src="/static/phone.png" />
+        <text class="phone">{{addressObj.user_number}}</text>
+        </view>
+    </view>
+    <view class="item" style="justify-content: flex-start;">
+      <image src="/static/address.png" />
+      <text>{{addressObj.user_area + addressObj.user_detail_addr}}</text>
+    </view>
+    <van-icon name="arrow" class="icon" />
+  </view>
+</view>

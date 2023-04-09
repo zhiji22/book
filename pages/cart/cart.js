@@ -5,14 +5,22 @@ import { showLoading } from '../../utils/util'
 Page({
   data: {
     // 是否已经登录
-    userInfo: '',
+    isLogin: false,
     active: 1,
     radio: false,
     goodsList: [],
     // 当前收货地址
-    addressList: []
+    addressObj: ''
   },
   onLoad(options) {
+    // 获取默认地址
+    const openid = wx.getStorageSync('openid')
+    if(openid) {
+      this.setData({
+        isLogin: true
+      })
+      this.getDefaultAddress(openid)
+    }
     // 绑定store
     this.storeBindings = createStoreBindings(this, {
       store,
@@ -67,6 +75,7 @@ Page({
       }
     })
   },
+
   // 跳转到地址管理
   goToAddress() {
     if(!this.data.userInfo) return
@@ -74,20 +83,14 @@ Page({
       url: '/packageA/pages/address/address',
     })
   },
+
   // 选择收货地址
-  handleSelectAddress() {
-    // 先判断是否已经登陆
-    if(!this.data.userInfo) {
-      wx.switchTab({
-        url: '/pages/my/my',
-      })
-      return
-    }
-    // 已经登录
-    wx.navigateTo({
-      url: '/packageA/pages/address/address',
+  goToMy() {
+    wx.switchTab({
+      url: '/pages/my/my',
     })
   },
+
   // 初始化表 shop_cart  -- 数量，状态...
   initTable(goodsCardId) {
     // wx.request({
@@ -98,5 +101,19 @@ Page({
     //     console.log(res.data)
     //   }
     // })
+  },
+
+  // 获取默认地址
+  getDefaultAddress(openid) {
+    wx.request({
+      url: `http://localhost:3000/app/pay/getDefaultAddress?openid=${openid}`,
+      method: 'GET',
+      success: (res) => {
+        this.setData({
+          addressObj: res.data[0]
+        })
+        console.log(this.data.addressObj)
+      }
+    })
   }
 })

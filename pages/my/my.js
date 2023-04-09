@@ -38,7 +38,8 @@ Page({
       })
     };
     //获取用户globalData信息
-    var n = wx.getStorageSync('userInfo')
+    var n = wx.getStorageSync('userInfo');
+    console.log(n)
     if (n.nickName != '' && n.nickName != null) {
       this.setData({
         userInfo: n,
@@ -47,9 +48,7 @@ Page({
       })
       // 通过wx.login获取登录凭证（code），然后通过code去获取我们用户的openid
       wx.login({
-        success: (res) => {
-          console.log(res);
-        },
+        
       })
     }
   },
@@ -80,15 +79,10 @@ Page({
               method: 'GET',
               success: (res) => {
                 this.setData({
-                  openid: res.data.openid + 'gHp'
+                  openid: res.data.openid + 'gHp',
                 })
+                wx.setStorageSync('openid', this.data.openid)
                 this.sendUserInfo()
-              },
-              fail: (err) => {
-                wx.showToast({
-                  title: `获取openid失败，请重试！error_message=${err}`,
-                  icon: 'none'
-                })
               }
             })
           },

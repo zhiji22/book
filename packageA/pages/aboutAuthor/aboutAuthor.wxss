@@ -1,14 +1,11 @@
 .about-author .center-box {
   width: 450rpx;
   height: 450rpx;
-  border: 1px solid;
   margin: 300rpx auto;
   box-sizing: border-box;
 }
 /* 头像部分 */
 .about-author .center-box .img-box {
-  width: 10rem;
-  height: 10rem;
   text-align: center;
   margin: auto;
   margin-top: 60rpx;
@@ -16,19 +13,25 @@
 }
 .about-author .center-box .img-box .img {
   display: block;
-  height: 300rpx;
-  width: 300rpx;
-  border: 1px solid;
   margin: auto;
 }
 .about-author .center-box .img-box .txt {
   display: block;
-  margin-top: 20rpx;
+  margin: 30rpx 0 50rpx;
   color: #000;
 }
+
+/* 无关紧要的文字 */
+.about-author .center-box .text-box {
+  font-size: 30rpx;
+  text-align: center;
+  color: rgb(95, 95, 95);
+}
+
 /* rate 评分 */
 .about-author .center-box .rate-box {
-  border: 1px solid;
   height: 80rpx;
-  margin-top: 50rpx;
+  margin: 40rpx auto;
+  padding: 10rpx 66rpx;
+  box-sizing: border-box;
 }

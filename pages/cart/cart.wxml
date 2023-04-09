@@ -1,28 +1,8 @@
 <view style="padding-bottom: 118rpx;">
-  <view class="address-box">
-    <view wx:if="{{false}}" style="margin: 0 15rpx;">
-      <view class="item">
-        <view style="display: flex;">
-          <image src="/static/receive .png" />
-          <text>Michael</text>
-        </view>
-        <view style="display: flex;" style="margin-right: 70rpx;">
-          <image src="/static/phone.png" />
-          <text class="phone">(+001)12555555324</text>
-          </view>
-      </view>
-      <view class="item" style="justify-content: flex-start;">
-        <image src="/static/address.png" />
-        <text>美国洛杉矶芝加哥华盛顿纽约广场</text>
-      </view>
-      <van-icon name="arrow" class="icon" />
-    </view>
-    <view wx:else class="select-addr">
-      <view>
-        <van-button color="#1989fa" type="primary" size="small" round bindtap="handleSelectAddress">+选择收货地址</van-button>
-      </view>
-    </view>
+  <view wx:if="{{isLogin}}" class="select-addr">
+    <van-button color="#1989fa" type="primary" size="small" round bindtap="goToMy">请先登录</van-button>
   </view>
+  <addr wx:else addressObj="{{addressObj}}" />
   <!-- 商品 -->
   <view class="goods-box">
     <view class="cart-icon">

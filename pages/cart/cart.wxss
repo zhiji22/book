@@ -162,5 +162,5 @@
   height: 130rpx;
   text-align: center;
   box-sizing: border-box;
-  padding-top: 20rpx;
+  padding: 35rpx 20rpx;
 }

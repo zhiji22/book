@@ -15,6 +15,7 @@ Page({
     })
     this.getAllAddress()
   },
+
   // methods
   getAllAddress() {
     wx.request({
@@ -27,19 +28,24 @@ Page({
       }
     })
   },
-  // 改变背景颜色
-  changeBackGround(e) {
-    this.setData({
-      selected: e.currentTarget.dataset.index
-    })
-    // 改变登录状态
-    this.changeLoginState(true)
-  },
+  
   // 跳转到修改收货地址
   goToEditAddress(e) {
     const id = e.currentTarget.dataset.id;
     wx.navigateTo({
       url: `/packageA/pages/editAddress/editAddress?id=${id?id:''}`,
+    })
+  },
+
+  // 点击选择收货地址
+  handleSelectAddress(e) {
+    const { index, id } = e.currentTarget.dataset
+    this.setData({
+      selected: index
+    })
+    const obj = this.data.addressList.find(item => item.id == id)
+    wx.switchTab({
+      url: `/pages/cart/cart?addressInfo=${JSON.stringify(obj)}`,
     })
   }
 })

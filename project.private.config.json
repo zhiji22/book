@@ -85,6 +85,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "pay",
+          "pathName": "packageA/pages/pay/pay",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

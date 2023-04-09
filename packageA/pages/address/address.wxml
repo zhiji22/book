@@ -5,6 +5,9 @@
         class="address-box"
         wx:for="{{addressList}}"
         wx:key="id"
+        bindtap="handleSelectAddress"
+        data-index="{{index}}"
+        data-id="{{item.id}}"
       >
         <view style="width: 10%; margin: 0 5rpx;">
           <van-radio name="1" icon-size="45rpx" />

@@ -1,7 +1,7 @@
 
 Page({
   data: {
-    value: 3,
+    value: 5,
     userInfo: ''
   },
   onLoad(options) {
@@ -18,4 +18,10 @@ Page({
   },
 
   // methods
+  goBack() {
+    console.log(11)
+    wx.switchTab({
+      url: '/pages/my/my',
+    })
+  }
 })

@@ -3,6 +3,7 @@ const address = require('./address')
 const index = require('./index/floorlist')
 const shop = require('./shop')
 const user = require('./user')
+const pay = require('./pay')
 
 
 module.exports = {
@@ -10,5 +11,6 @@ module.exports = {
   collect,
   index,
   shop,
-  user
+  user,
+  pay
 }

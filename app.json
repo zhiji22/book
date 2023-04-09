@@ -17,7 +17,8 @@
         "pages/order/order",
         "pages/collect/collect",
         "pages/trace/trace",
-        "pages/aboutAuthor/aboutAuthor"
+        "pages/aboutAuthor/aboutAuthor",
+        "pages/pay/pay"
       ]
     }
   ],

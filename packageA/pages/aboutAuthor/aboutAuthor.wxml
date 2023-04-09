@@ -1,24 +1,23 @@
-<view class="about-author">
+<view class="about-author" bindtap="goBack">
   <view class="center-box">
     <view class="img-box">
       <van-image
         class="img"
         round
-        width="4.5rem"
-        height="4.5rem"
+        width="6rem"
+        height="6rem"
         fit="cover"
         lazy-load
         src="{{userInfo.avatarUrl?userInfo.avatarUrl:''}}"
       />
-      <text class="txt">11</text>
+      <text class="txt">{{userInfo.nickName}}</text>
     </view>
+    <view class="text-box">这是一段无关紧要的文字！</view>
     <view class="rate-box">
       <van-rate
         value="{{ value }}"
         icon="like"
         void-icon="like-o"
-        bind:change="onChange"
-        style="display: block;width: 100%;height: 100%;"
       />
     </view>
   </view>
