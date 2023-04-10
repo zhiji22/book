@@ -8,6 +8,7 @@ Component({
   lifetimes: {
     attached() {
       this.getCollectGoods()
+      this.getTraceGoods()
       this.storeBindings = createStoreBindings(this, {
         store,
         fields: ['goodsCardId'],
@@ -33,6 +34,7 @@ Component({
       }
     ],
     collectList: [],
+    traceList: []
   },
   methods: {
     handleTapInfo(e) {
@@ -124,12 +126,28 @@ Component({
       wx.request({
         url: 'http://localhost:3000/app/collect/getCollectGoods',
         method: 'GET',
-        success: (res) => {
+        success: res => {
           this.setData({
             collectList: res.data
           })
         }
       })
+    },
+
+    // 获取足迹的商品数量
+    getTraceGoods() {
+      const openid = wx.getStorageSync('openid')
+      if(openid) {
+        wx.request({
+          url: `http://localhost:3000/app/user/getTraceInfo?openid=${openid}`,
+          method: 'GET',
+          success: res => {
+            this.setData({
+              traceList: res.data
+            })
+          }
+        })
+      }
     }
   },
 })

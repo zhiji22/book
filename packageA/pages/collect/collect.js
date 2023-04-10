@@ -55,6 +55,7 @@ Page({
       }
     })
   },
+  
   // 获取分类的索引
   changeItem(e) {
     const index = e.detail;
@@ -71,6 +72,7 @@ Page({
       }
     })
   },
+
   // 根据价格排序
   handleSort() {
     let collectList = this.data.collectList;

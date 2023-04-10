@@ -39,7 +39,6 @@ Page({
     };
     //获取用户globalData信息
     var n = wx.getStorageSync('userInfo');
-    console.log(n)
     if (n.nickName != '' && n.nickName != null) {
       this.setData({
         userInfo: n,

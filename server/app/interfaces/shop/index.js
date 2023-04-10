@@ -28,6 +28,7 @@ router.get('/join', async (ctx) => {
   })
   ctx.body = data;
 })
+
 // 初始化表
 router.post('/init', async (ctx) => {
   console.log(ctx.request.body)

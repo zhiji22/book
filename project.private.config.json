@@ -89,6 +89,13 @@
         {
           "name": "pay",
           "pathName": "packageA/pages/pay/pay",
+          "query": "id=8",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "trace",
+          "pathName": "packageA/pages/trace/trace",
           "query": "",
           "launchMode": "default",
           "scene": null

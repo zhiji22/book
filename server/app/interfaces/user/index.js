@@ -3,7 +3,7 @@
  * @Author: wanghong
  * @Date: 2023-04-05 20:19:01
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-04-09 21:52:28
+ * @LastEditTime: 2023-04-10 16:38:24
  */
 const Router = require('koa-router');
 const { createConnection } = require('../../util/utils')
@@ -79,7 +79,27 @@ router.post('/addUserTrace', async (ctx) => {
   // 结束
   conn.end()
 
-  console.log(data)
+  ctx.body = data;
 })
+
+// 获取足迹商品
+router.get('/getTraceInfo', async (ctx) => {
+  const user_id = ctx.request.query.openid;
+  const conn = createConnection()
+
+  const sql = 'select * from user_trace where user_id = ?'
+  const data = await new Promise((resolve, reject) => { // koa下query需要promise封装
+    conn.query(sql, [user_id], (err, result) => {
+      if(err) reject(err)
+      resolve(result)
+
+      // 结束
+      conn.end()
+    })
+  })
+
+  ctx.body = data;
+})
+
 
 module.exports = router;

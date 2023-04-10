@@ -43,13 +43,13 @@ Page({
     wx.showLoading({
       title: '保存中...',
     })
-    let obj = {
-      userName: this.data.userName,
-      userNumber: this.data.userNumber,
-      userArea: this.data.userArea,
-      userDetailAddr: this.data.userDetailAddr,
-      checked: this.data.checked
-    }
+    // let obj = {
+    //   userName: this.data.userName,
+    //   userNumber: this.data.userNumber,
+    //   userArea: this.data.userArea,
+    //   userDetailAddr: this.data.userDetailAddr,
+    //   checked: this.data.checked
+    // }
   },
 
   // 删除

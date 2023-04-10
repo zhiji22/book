@@ -17,6 +17,11 @@ Component({
 
   },
   methods: {
-
+    goToDetail(e) {
+      const id = e.currentTarget.dataset.id;
+      wx.navigateTo({
+        url: `/packageA/pages/goodsDetail/goodsDetail?id=${id}`,
+      })
+    }
   }
 })

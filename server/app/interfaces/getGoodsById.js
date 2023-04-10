@@ -1,19 +1,18 @@
 const Router = require('koa-router');
-const mysql = require('mysql');
 const router = new Router();
-router.get('/getGoodsById', async (ctx) => {
-  const conn = mysql.createConnection({ // 创建连接
-    host: 'localhost',
-    user: 'root',
-    password: '123456',
-    database: 'book'
-  })
-  const sql = 'select * from books where id = ?'; // 根据type查询
+const { createConnection }  = require('../util/utils')
+
+// 根据id获取商品
+router.get('/app/getGoodsById', async (ctx) => {
+  const conn = createConnection()
+
+  const sql = 'select * from books where id = ?';
   const data = await new Promise((resolve, reject) => {
     conn.query(sql, [ctx.request.query.id], (err, result) => {
       if(err) reject(err)
       resolve(result)
-      conn.end() // 关闭连接
+      
+      conn.end()
     })
   })
   ctx.body = data;

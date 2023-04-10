@@ -24,7 +24,7 @@
           <van-grid-item use-slot data-name="cart">购物车 {{goodsCardId.length}}</van-grid-item>
         </view>
         <view class="number-item">
-          <van-grid-item use-slot data-name="trace">足迹 33</van-grid-item>
+          <van-grid-item use-slot data-name="trace">足迹 {{traceList.length}}</van-grid-item>
         </view>
       </van-grid>
     </view>
@@ -42,7 +42,7 @@
             icon="{{item.icon}}"
             text="{{item.text}}"
             data-index="{{index}}"
-            />
+          />
         </van-grid>
       </view>
     </view>

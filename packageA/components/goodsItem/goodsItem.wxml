@@ -1,5 +1,5 @@
 <view class="goods-box">
-  <view wx:for="{{list}}" wx:key="index">
+  <view wx:for="{{list}}" wx:key="index" bindtap="goToDetail" data-id="{{item.id}}">
     <van-card
       num="{{showNum?'2':none}}"
       tag="{{item.discount?'折扣':''}}"
