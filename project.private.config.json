@@ -89,7 +89,7 @@
         {
           "name": "pay",
           "pathName": "packageA/pages/pay/pay",
-          "query": "id=8",
+          "query": "",
           "launchMode": "default",
           "scene": null
         },

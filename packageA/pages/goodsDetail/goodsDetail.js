@@ -23,7 +23,7 @@ Page({
     this.requestGoodsList(options.id);
     // 判断是否登录
     const openid = wx.getStorageSync('openid');
-    if(openid) this.setData({ isLogin: true, openid })
+    this.setData({ openid })
     // 绑定store
     this.storeBindings = createStoreBindings(this, {
       store,
@@ -88,10 +88,11 @@ Page({
       currentIndex: e.detail
     })
   },
+  
   // 收藏
   handleCollect() {
     // 判断用户是否已登录
-    if(!this.data.isLogin) return wx.showToast({
+    if(!this.data.openid) return wx.showToast({
       title: '请先登录！',
       icon: 'none'
     })
@@ -134,7 +135,7 @@ Page({
   // 加入购物
   handleAddCart(){
     // 判断用户是否已登陆
-    if(!this.data.isLogin) return wx.showToast({
+    if(!this.data.openid) return wx.showToast({
       title: '请先登录！',
       icon: 'none'
     })
@@ -142,7 +143,6 @@ Page({
     showLoading()
     const timer = setTimeout(() => {
       const info = this.addCartNum(this.data.cartId);
-      console.log(info)
       // 书籍已加入购物车
       if(typeof info == 'string') {
         var tips = info;
@@ -175,8 +175,9 @@ Page({
 
   // 前往支付页面
   goToPay() {
+    const id = [this.data.cartId];
     wx.navigateTo({
-      url: `/packageA/pages/pay/pay?id=${this.data.cartId}`,
+      url: `/packageA/pages/pay/pay?ids=${JSON.stringify(id)}`,
     })
   }
 })

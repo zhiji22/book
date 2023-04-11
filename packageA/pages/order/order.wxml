@@ -8,7 +8,7 @@
     bind:change="onChange"
     >
     <van-tab title="待发货">
-      <goods-item stateText="待发货" btnText1="提醒卖家" />
+      <goods-item showNum="{{false}}" list="{{waitGoodList}}" />
     </van-tab>
     <van-tab title="待收货">
       <goods-item stateText="已发货" btnText1="查看物流" />
@@ -16,5 +16,5 @@
     <van-tab title="全部订单">
       <goods-item stateText="已发货" btnText2="售后" />
     </van-tab>
-</van-tabs>
+  </van-tabs>
 </view>

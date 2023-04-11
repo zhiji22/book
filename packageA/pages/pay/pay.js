@@ -1,19 +1,24 @@
 Page({
   data: {
     checked: false,
-    // 商品id
-    goodsId: '',
     // 合计价格
     allPay: '',
-    goodsList: []
+    // 商品id
+    goodsIds: '',
+    goodsList: [],
+    totalPrice: 0,
+    originPrice: 0
   },
   onLoad(options) {
-    this.setData({
-      goodsId: options.id
-    })
+    if(options.ids) {
+      const goodsIds = JSON.parse(options.ids)
+      this.setData({
+        goodsIds
+      })
+    }
     const openid = wx.getStorageSync('openid') || '';
     this.getDefaultAddress(openid);
-    this.getGoodsInfo(options.id)
+    this.getGoodsInfo(this.data.goodsIds)
   },
 
   onShow() {
@@ -29,6 +34,15 @@ Page({
     this.setData({
       checked: !this.data.checked
     })
+    if(this.data.checked) {
+      this.setData({
+        totalPrice: parseInt((this.data.totalPrice/100 + 6) + '00')
+      })
+    }else {
+      this.setData({
+        totalPrice: this.data.originPrice
+      })
+    }
   },
 
   // 获取默认地址
@@ -47,13 +61,26 @@ Page({
   },
 
   // 获取商品信息
-  getGoodsInfo(id) {
+  getGoodsInfo(goodsIds) {
     wx.request({
-      url: `http://localhost:3000/app/getGoodsById?id=${id}`,
+      url: 'http://localhost:3000/app/getAllGoods',
       method: 'GET',
       success: res => {
+        let totalPrice = 0;
+        let goodsList = [];
+        goodsIds.forEach(id => {
+          res.data.forEach(item => {
+            if(id == item.id) {
+              totalPrice += parseInt(item.discount)
+              goodsList.push(item)
+            }
+          })
+        })
+        console.log(totalPrice)
         this.setData({
-          goodsList: res.data
+          goodsList,
+          totalPrice: parseInt(totalPrice + '00'),
+          originPrice: parseInt(totalPrice + '00')
         })
       }
     })
@@ -64,9 +91,10 @@ Page({
     wx.showToast({
       title: '提交成功',
     })
+    let goodsIds = this.data.goodsIds;
     setTimeout(() => {
       wx.navigateTo({
-        url: `/packageA/pages/order/order?id=${this.data.goodsId}`,
+        url: `/packageA/pages/order/order?ids=${JSON.stringify(goodsIds)}`,
       })
     }, 900)
   }

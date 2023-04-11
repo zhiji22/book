@@ -78,7 +78,7 @@
   background-color: #fafafa;
 }
 .goods .goods-item {
-  padding: 0 20rpx;
+  padding-left: 28rpx;
   display: flex;
   align-items: center;
   margin-bottom: 20rpx;
@@ -87,13 +87,12 @@
   width: 80%;
   height: 260rpx;
   background-color: #fff;
-  margin-left: -10rpx;
   border-radius: 40rpx;
   position: relative;
 }
 /* == card宽度 ==  */
 .van-card__content{
-  width: 540rpx;
+  width: 570rpx;
   overflow: hidden;
 }
 .van-card__desc {
@@ -107,7 +106,7 @@
   margin-top: -70rpx;
 }
 /* 按钮 */
-.goods .goods-item .btn-box {
+/* .goods .goods-item .btn-box {
   width: 50rpx;
   display: flex;
   position: absolute;
@@ -128,7 +127,7 @@
   font-size: 37rpx;
   color: #fff;
   line-height: 46rpx;
-}
+} */
 /* 标签 */
 .goods .goods-item .tags .van-button--mini {
   min-width: 60rpx;

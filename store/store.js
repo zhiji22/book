@@ -6,8 +6,9 @@ export const store = observable({
   // 数据的类型
   typeList: ['IT', '小说', '情商', '运动', '社会学', '心灵与修养'],
   // 购物车书籍的id
-  goodsCardId: [],
-  // goodsCardId: JSON.parse(wx.getStorageSync('goodsCardId')) || [],
+  // goodsCardId: [],
+  goodsCardId: JSON.parse(wx.getStorageSync('goodsCardId')) || [],
+  waitGoodsListIds: JSON.parse(wx.getStorageSync('waitGoodsListIds')) || [],
 
   addCartNum: action(function(id) {
     // 商品是否已经加购
@@ -34,4 +35,13 @@ export const store = observable({
   //   const index = this.collectIds.indexOf(id);
   //   this.collectIds.splice(index, 1)
   // })
+  // 增加代发货id
+  addWaitGoodsId(ids) {
+    ids.forEach(id => {
+      const index = this.waitGoodsListIds.indexOf(id);
+      if(index >= 0 ) return;
+      this.waitGoodsListIds.push(id)
+    })
+    wx.setStorageSync('waitGoodsListIds', JSON.stringify(this.waitGoodsListIds))
+  }
 })

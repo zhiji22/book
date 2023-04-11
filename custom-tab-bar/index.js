@@ -1,5 +1,6 @@
 import { storeBindingsBehavior } from 'mobx-miniprogram-bindings';
 import { store } from '../store/store';
+
 Component({
   behaviors: [storeBindingsBehavior],
   storeBindings: {

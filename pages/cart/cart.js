@@ -10,17 +10,16 @@ Page({
     radio: false,
     goodsList: [],
     // 当前收货地址
-    addressObj: ''
+    addressObj: '',
+    openid: ''
   },
   onLoad(options) {
     // 获取默认地址
-    const openid = wx.getStorageSync('openid')
-    if(openid) {
-      this.setData({
-        isLogin: true
-      })
-      this.getDefaultAddress(openid)
-    }
+    const openid = wx.getStorageSync('openid');
+    this.setData({
+      openid
+    })
+    this.getDefaultAddress(openid)
     // 绑定store
     this.storeBindings = createStoreBindings(this, {
       store,
@@ -57,7 +56,11 @@ Page({
   },
   // 提交订单
   onClickButton() {
+    const goodsCardId = this.data.goodsCardId
     
+    wx.navigateTo({
+      url: `/packageA/pages/pay/pay?ids=${JSON.stringify(goodsCardId)}`,
+    })
   },
   // 请求数据
   requestList(goodsCardId) {

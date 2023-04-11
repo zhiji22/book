@@ -1,8 +1,5 @@
 <view style="padding-bottom: 118rpx;">
-  <view wx:if="{{isLogin}}" class="select-addr">
-    <van-button color="#1989fa" type="primary" size="small" round bindtap="goToMy">请先登录</van-button>
-  </view>
-  <addr wx:else addressObj="{{addressObj}}" />
+  <addr addressObj="{{addressObj}}" />
   <!-- 商品 -->
   <view class="goods-box">
     <view class="cart-icon">
@@ -12,7 +9,6 @@
     <view class="goods">
       <view wx:for="{{goodsList}}" wx:key="index" class="goods-item" >
         <van-card
-            num="2"
             tag="折扣"
             price="{{item.discount?item.discount:item.price}}"
             desc="{{item.description}}"
@@ -23,13 +19,13 @@
             <view slot="tags" class="tags">
               <van-button size="mini">{{item.type}}</van-button>
             </view>
-            <view slot="footer" class="btn-box">
+            <!-- <view slot="footer" class="btn-box">
               <van-button size="mini">-</van-button>
               <van-button size="mini">+</van-button>
-            </view>
-            <view slot="footer" class="radio-box">
+            </view> -->
+            <!-- <view slot="footer" class="radio-box">
               <radio value="" />
-            </view>
+            </view> -->
         </van-card>
       </view>
       <view class="no-more">
@@ -44,7 +40,7 @@
     button-text="提交订单"
     bind:submit="onClickButton"
     >
-      <radio class="radio-bottom" value="" >全选</radio>
+      <!-- <radio class="radio-bottom" value="" >全选</radio> -->
     </van-submit-bar>
   </view>
 </view>
