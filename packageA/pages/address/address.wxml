@@ -35,6 +35,6 @@
       </view>
   </view>
   <view class="btn-box">
-    <van-button type="info" round bindtap="goToEditAddress">新增地址</van-button>
+    <van-button type="info" round bindtap="goToAddAddress">新增地址</van-button>
   </view>
 </view>

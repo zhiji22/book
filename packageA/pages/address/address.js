@@ -47,5 +47,12 @@ Page({
     wx.switchTab({
       url: `/pages/cart/cart?addressInfo=${JSON.stringify(obj)}`,
     })
+  },
+
+  // 跳转到新增地址
+  goToAddAddress() {
+    wx.navigateTo({
+      url: '/packageA/pages/addAddress/addAddress',
+    })
   }
 })

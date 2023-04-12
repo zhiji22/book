@@ -99,6 +99,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "addAddress",
+          "pathName": "packageA/pages/address/address",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

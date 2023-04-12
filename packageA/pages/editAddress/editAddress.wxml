@@ -48,7 +48,7 @@
       </van-cell>
     </view>
     <view class="btn-box">
-      <van-button round type="info" bindtap="handleSave">保存</van-button>
+      <van-button round type="info" bindtap="handleSubmit">提交</van-button>
       <van-button wx:if="{{showDelButton}}" round bindtap="handleDelete">删除</van-button>
     </view>
   </view>

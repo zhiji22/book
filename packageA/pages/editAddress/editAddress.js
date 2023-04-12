@@ -14,11 +14,19 @@ Page({
     userNumber: '',
     userArea: '',
     userDetailAddr: '',
+
+    // 当前收货地址id
+    currentAddressId: '',
     // 区域信息
     areaList,
   },
   onLoad(options) {
-    if(options.id) this.setData({ showDelButton: true })
+    if(options.id) this.setData({
+      showDelButton: true,
+      currentAddressId: options.id
+    })
+    // 获取地址信息
+    this.getAddressById(options.id)
   },
   onReady() {
 
@@ -31,7 +39,7 @@ Page({
   },
   // methods
   // 保存
-  handleSave() {
+  handleSubmit() {
     // 验证是否所有数据已填
     const flag = this.data.userName && this.data.userNumber && this.data.userArea;
     if(!flag) return Toast.fail('还有必要的数据没有填哦！')
@@ -40,16 +48,25 @@ Page({
     if(results.toString().length < this.data.userNumber.length) {
       return Toast.fail('手机号码一定为数字哦')
     }else if(results.toString().length != 11) return Toast.fail('手机号码为11位')
-    wx.showLoading({
-      title: '保存中...',
+    // wx.showLoading({
+    //   title: '保存中...',
+    // })
+    let data = {
+      userName: this.data.userName,
+      userNumber: this.data.userNumber,
+      userArea: this.data.userArea,
+      userDetailAddr: this.data.userDetailAddr,
+      checked: this.data.checked ? 1 : 0,
+      id: this.data.currentAddressId
+    }
+    wx.request({
+      url: 'http://localhost:3000/app/address/insert',
+      method: 'POST',
+      data,
+      success: res => {
+        console.log(res.data)
+      }
     })
-    // let obj = {
-    //   userName: this.data.userName,
-    //   userNumber: this.data.userNumber,
-    //   userArea: this.data.userArea,
-    //   userDetailAddr: this.data.userDetailAddr,
-    //   checked: this.data.checked
-    // }
   },
 
   // 删除
@@ -122,6 +139,24 @@ Page({
   handleCancel() {
     this.setData({
       showPopup: false
+    })
+  },
+
+  // 根据id获取地址信息
+  getAddressById(id) {
+    wx.request({
+      url: `http://localhost:3000/app/address/getAddressById?id=${id}`,
+      method: 'GET',
+      success: res => {
+        const data = res.data[0];
+        this.setData({
+          userName: data.user_name,
+          userNumber: data.user_number,
+          userArea: data.user_area,
+          userDetailAddr: data.user_detail_addr,
+          checked: data.default ? true : false
+        })
+      }
     })
   }
 }) 
