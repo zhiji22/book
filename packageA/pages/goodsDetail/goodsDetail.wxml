@@ -58,7 +58,7 @@
   <view>
     <van-goods-action>
       <van-goods-action-icon icon="{{icon}}" text="收藏" bindtap="handleCollect" />
-      <van-goods-action-icon icon="cart-o" text="购物车" info="{{goodsCardId.length}}" bind:tap="goToCart" />
+      <van-goods-action-icon icon="cart-o" text="购物车" info="{{goodsCardIds.length}}" bind:tap="goToCart" />
       <van-goods-action-button color="#be99ff" text="加入购物车" type="warning" bind:tap="handleAddCart" />
       <van-goods-action-button color="#7232dd" text="立即购买" bind:tap="goToPay" />
     </van-goods-action>

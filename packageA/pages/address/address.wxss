@@ -18,7 +18,7 @@
 }
 /* 内容部分 */
 .address .content {
-  padding: 40rpx 25rpx;
+  padding: 40rpx 25rpx 220rpx;
 }
 .address .content .txt {
   display: block;

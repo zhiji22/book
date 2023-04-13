@@ -91,10 +91,10 @@ Page({
     wx.showToast({
       title: '提交成功',
     })
-    let goodsIds = this.data.goodsIds;
+    let goodsIds = JSON.stringify(this.data.goodsIds);
     setTimeout(() => {
       wx.navigateTo({
-        url: `/packageA/pages/order/order?ids=${JSON.stringify(goodsIds)}`,
+        url: `/packageA/pages/order/order?ids=${goodsIds}`,
       })
     }, 900)
   }

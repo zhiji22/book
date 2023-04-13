@@ -106,14 +106,14 @@
   margin-top: -70rpx;
 }
 /* 按钮 */
-/* .goods .goods-item .btn-box {
-  width: 50rpx;
+.goods .goods-item .btn-box {
+  width: 60rpx;
   display: flex;
   position: absolute;
   top: 178rpx;
   right: 90rpx;
 }
-.goods .goods-item .btn-box .van-button--mini {
+/* .goods .goods-item .btn-box .van-button--mini {
   min-width: 55rpx !important;
   height: 50rpx;
   margin-right: 10rpx;

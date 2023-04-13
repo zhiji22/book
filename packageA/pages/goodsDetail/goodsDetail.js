@@ -15,10 +15,17 @@ Page({
     openid: '',
     showGallary: false,
     currentIndex: 0,
-    swiperList: []
+    swiperList: [],
+    // 已加入购物车的id
+    goodsCardIds: [],
+    // 合计的价格
+    totalPrice: ''
   },
 
   onLoad(options) {
+    // 获取已加入购物车id
+    let goodsCardIds = JSON.parse(wx.getStorageSync('goodsCardIds')) || '';
+    if(goodsCardIds) this.setData({ goodsCardIds })
     this.data.cartId = options.id;
     this.requestGoodsList(options.id);
     // 判断是否登录
@@ -163,7 +170,10 @@ Page({
 
   // 购物车数量持久化
   saveToStorage(goodsCardId){
-    wx.setStorageSync('goodsCardId', JSON.stringify(goodsCardId))
+    this.setData({
+      goodsCardIds: [...new Set(this.data.goodsCardIds.concat(goodsCardId))]
+    })
+    wx.setStorageSync('goodsCardIds', JSON.stringify(this.data.goodsCardIds))
   },
 
   // 跳转购物车页面

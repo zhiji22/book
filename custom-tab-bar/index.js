@@ -9,10 +9,19 @@ Component({
       goodsCardId: () => store.goodsCardId
     }
   },
+  lifetimes: {
+    attached() {
+      let goodsCardIds = JSON.parse(wx.getStorageSync('goodsCardIds')) || '';
+      console.log(goodsCardIds)
+    if(goodsCardIds) this.setData({ goodsCardIds })
+    }
+  },
   properties: {
   },
   data: {
     active: 0,
+    // 已加入购物车的商品id
+    goodsCardIds: [],
     list: [
       {
         name: 'index',

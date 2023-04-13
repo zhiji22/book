@@ -53,11 +53,27 @@ Page({
       checked: this.data.checked ? 1 : 0,
     }
     wx.request({
-      url: 'http://localhost:3000/app/address/addAddress',
+      url: 'http://localhost:3000/app/address/insert',
       method: 'POST',
       data,
       success: res => {
-        console.log(res.data)
+        if(res.data.affectedRows) {
+          wx.showLoading({
+            title: '提交中...',
+          })
+          const timer1 = setTimeout(() => {
+            wx.showToast({
+              title: '修改成功！',
+            })
+            clearTimeout(timer1)
+          }, 1400)
+          const timer2 = setTimeout(() => {
+            wx.navigateTo({
+              url: '/packageA/pages/address/address',
+            })
+            clearTimeout(timer2)
+          }, 2500)
+        }
       }
     })
   },

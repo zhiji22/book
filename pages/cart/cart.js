@@ -11,9 +11,13 @@ Page({
     goodsList: [],
     // 当前收货地址
     addressObj: '',
-    openid: ''
+    openid: '',
+    // 已加入购物车的商品id
+    goodsCardIds: []
   },
   onLoad(options) {
+    let goodsCardIds = JSON.parse(wx.getStorageSync('goodsCardIds')) || '';
+    if(goodsCardIds) this.setData({ goodsCardIds })
     // 获取默认地址
     const openid = wx.getStorageSync('openid');
     this.setData({
@@ -27,10 +31,10 @@ Page({
     })
     showLoading()
     const timer = setTimeout(() => {
-      const goodsCardId  = this.data.goodsCardId
-      if(goodsCardId) {
-        this.requestList(goodsCardId);
-        this.initTable(goodsCardId)
+      const goodsCardIds  = this.data.goodsCardIds
+      if(goodsCardIds) {
+        this.requestList(goodsCardIds);
+        // this.initTable(goodsCardId)
         clearTimeout(timer)
       }
     }, 0)
@@ -53,27 +57,32 @@ Page({
         active: 1
       })
     }
+    this.getDefaultAddress(this.data.openid)
   },
   // 提交订单
   onClickButton() {
-    const goodsCardId = this.data.goodsCardId
+    const goodsCardIds = JSON.stringify(this.data.goodsCardIds)
     
     wx.navigateTo({
-      url: `/packageA/pages/pay/pay?ids=${JSON.stringify(goodsCardId)}`,
+      url: `/packageA/pages/pay/pay?ids=${goodsCardIds}`,
     })
   },
   // 请求数据
-  requestList(goodsCardId) {
+  requestList(goodsCardIds) {
     wx.request({
       url: `http://localhost:3000/app/getAllGoods`,
       success: (res) => {
         let arr = [];
-        for(var i = 0; i < goodsCardId.length; i++) {
-          var obj = res.data.find(item => goodsCardId[i] == item.id);
-          arr.push(obj)
+        let totalPrice = 0;
+        for(var i = 0; i < goodsCardIds.length; i++) {
+          var obj = res.data.find(item => goodsCardIds[i] == item.id);
+          arr.push(obj);
+          // 计算价格
+          totalPrice += parseInt(obj.discount);
         }
         this.setData({
-          goodsList: arr
+          goodsList: arr,
+          totalPrice: parseInt(totalPrice + '00')
         })
       }
     })
@@ -115,8 +124,25 @@ Page({
         this.setData({
           addressObj: res.data[0]
         })
-        console.log(this.data.addressObj)
       }
     })
+  },
+
+  // 从购物车移出商品
+  handleDelete(e) {
+    const id = e.currentTarget.dataset.id.toString();
+    let arr = []
+    for(let i = 0; i < this.data.goodsCardIds.length; i++) {
+      if(this.data.goodsCardIds[i] == id) continue;
+      arr.push(this.data.goodsCardIds[i])
+    }
+    this.setData({
+      goodsCardIds: arr
+    })
+    // 持久化
+    wx.setStorageSync('goodsCardIds', this.data.goodsCardIds);
+    this.requestList(this.data.goodsCardIds)
+    // 刷新页面
+    this.onLoad()
   }
 })

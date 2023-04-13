@@ -5,7 +5,7 @@ const router = new Router({
   prefix: '/app/pay'
 });
 
-// 获取所有地址信息
+// 获取默认地址信息
 router.get('/getDefaultAddress', async (ctx) => {
   const user_id = ctx.request.query.openid;
   // 创建连接

@@ -3,7 +3,7 @@
     wx:for="{{list}}"
     wx:key="index"
     wx:for-item="item"
-    info="{{index==1 ? goodsCardId.length : null}}"
+    info="{{index==1 ? goodsCardIds.length : null}}"
     >
     <image
       slot="icon"

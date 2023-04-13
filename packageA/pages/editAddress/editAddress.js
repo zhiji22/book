@@ -14,7 +14,6 @@ Page({
     userNumber: '',
     userArea: '',
     userDetailAddr: '',
-
     // 当前收货地址id
     currentAddressId: '',
     // 区域信息
@@ -60,19 +59,61 @@ Page({
       id: this.data.currentAddressId
     }
     wx.request({
-      url: 'http://localhost:3000/app/address/insert',
+      url: 'http://localhost:3000/app/address/update',
       method: 'POST',
       data,
       success: res => {
-        console.log(res.data)
+        if(res.data.affectedRows) {
+          wx.showLoading({
+            title: '提交中...',
+          })
+          const timer1 = setTimeout(() => {
+            wx.showToast({
+              title: '修改成功！',
+            })
+            clearTimeout(timer1)
+          }, 1400)
+          const timer2 = setTimeout(() => {
+            wx.navigateTo({
+              url: '/packageA/pages/address/address',
+            })
+            clearTimeout(timer2)
+          }, 2500)
+        }
       }
     })
   },
 
   // 删除
   handleDelete() {
-    console.log('delete...')
-    this.showLoading()
+    if(this.data.checked) return wx.showToast({
+      title: '默认地址不能删除！',
+      icon: 'error'
+    })
+    const id = this.data.currentAddressId;
+    wx.request({
+      url: `http://localhost:3000/app/address/delete?id=${id}`,
+      method: 'DELETE',
+      success: res => {
+        if(res.data.affectedRows) {
+          wx.showLoading({
+            title: '提交中...',
+          })
+          const timer1 = setTimeout(() => {
+            wx.showToast({
+              title: '删除成功！',
+            })
+            clearTimeout(timer1)
+          }, 1400)
+          const timer2 = setTimeout(() => {
+            wx.navigateTo({
+              url: '/packageA/pages/address/address',
+            })
+            clearTimeout(timer2)
+          }, 2500)
+        }
+      }
+    })
   },
 
   // 显示加载提示

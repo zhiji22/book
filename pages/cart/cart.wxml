@@ -9,23 +9,22 @@
     <view class="goods">
       <view wx:for="{{goodsList}}" wx:key="index" class="goods-item" >
         <van-card
-            tag="折扣"
-            price="{{item.discount?item.discount:item.price}}"
-            desc="{{item.description}}"
-            title="{{item.title}}"
-            thumb="{{item.src}}"
-            origin-price="{{item.discount?item.price:''}}"
-          >
-            <view slot="tags" class="tags">
-              <van-button size="mini">{{item.type}}</van-button>
-            </view>
-            <!-- <view slot="footer" class="btn-box">
-              <van-button size="mini">-</van-button>
-              <van-button size="mini">+</van-button>
-            </view> -->
-            <!-- <view slot="footer" class="radio-box">
-              <radio value="" />
-            </view> -->
+          tag="折扣"
+          price="{{item.discount?item.discount:item.price}}"
+          desc="{{item.description}}"
+          title="{{item.title}}"
+          thumb="{{item.src}}"
+          origin-price="{{item.discount?item.price:''}}"
+        >
+          <view slot="tags" class="tags">
+            <van-button size="mini">{{item.type}}</van-button>
+          </view>
+          <view slot="footer" class="btn-box">
+            <van-button size="mini" bindtap="handleDelete" data-id="{{item.id}}">删除</van-button>
+          </view>
+          <!-- <view slot="footer" class="radio-box">
+            <radio value="" />
+          </view> -->
         </van-card>
       </view>
       <view class="no-more">
@@ -36,7 +35,7 @@
   <!-- 计算 -->
   <view>
     <van-submit-bar
-    price="{{ 3050 }}"
+    price="{{ totalPrice }}"
     button-text="提交订单"
     bind:submit="onClickButton"
     >

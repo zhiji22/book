@@ -5,12 +5,22 @@ Page({
   data: {
     active: 0,
     ids: [],
+    // 存放等待发货的id
+    goodIds: [],
     // 代发货
-    waitGoodList: []
+    goodList: []
   },
   onLoad(options) {
+    let ids = wx.getStorageSync('goodIds') || '';
+    this.setData({
+      goodIds: ids
+    })
     if(options.ids) {
       const goodIds = JSON.parse(options.ids);
+      this.setData({
+        goodIds: [...new Set(this.data.goodIds.concat(goodIds))]
+      })
+      wx.setStorageSync('goodIds', this.data.goodIds)
       this.getGoodsList(goodIds);
       // setTimeout(() => {
       //   wx.showLoading({
@@ -43,26 +53,28 @@ Page({
       method: 'GET',
       success: res => {
         // 存为store
-        let ids = [];
-        const storeList = this.data.waitGoodsListIds.slice();
-        storeList.forEach(storeId => {
-          goodIds.forEach(id => {
-            if(storeId != id) ids.push(id)
-          })
-        })
-        this.addWaitGoodsId(ids)
-
-        let waitGoodList = [];
-        const goodsIds = this.data.waitGoodsListIds.slice()
-        goodsIds.forEach(id => {
-          res.data.forEach(item => {
-            if(item.id == id) waitGoodList.push(item)
+        // const storeList = this.data.waitGoodsListIds.slice();
+        let arr = []
+        res.data.forEach(item => {
+          this.data.goodIds.forEach(id => {
+            if(item.id == id) arr.push(item)
           })
         })
         this.setData({
-          waitGoodList
+          goodList: arr
         })
-        console.log(this.data.waitGoodList)
+        // this.addWaitGoodsId(ids)
+
+        // let waitGoodList = [];
+        // const goodsIds = this.data.waitGoodsListIds.slice()
+        // goodsIds.forEach(id => {
+        //   res.data.forEach(item => {
+        //     if(item.id == id) waitGoodList.push(item)
+        //   })
+        // })
+        // this.setData({
+        //   waitGoodList
+        // })
         setTimeout(() => {
           wx.hideLoading()
         }, 3000)
